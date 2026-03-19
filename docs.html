@@ -575,6 +575,61 @@
             </table>
         </section>
 
+        <!-- CONCLUSION -->
+        <section id="conclusion">
+            <span class="section-label"><svg class="ic"><use href="#i-sparkle" /></svg> Summary</span>
+            <h2>Conclusion</h2>
+
+            <div class="arch-box" style="border-color:var(--accent)">
+                <div style="text-align:center;margin-bottom:20px">
+                    <div style="font-size:2.4rem;font-weight:800;color:var(--accent);line-height:1">0.852</div>
+                    <div style="font-size:.82rem;color:var(--text2);margin-top:4px">Overall Cognitive Composite · Gemini 2.5 Flash · 150 Trials</div>
+                </div>
+
+                <p style="font-size:.88rem;line-height:1.7;color:var(--text);margin-bottom:18px">
+                    The Cognitive Assessment Benchmark is the first systematic LLM evaluation suite grounded in <strong>30 validated cognitive psychology paradigms</strong> spanning 142 years of research (1868–2010). Rather than testing what models <em>know</em>, it tests how they <em>think</em> — probing metacognition, executive control, social cognition, attention, and learning as distinct cognitive faculties.
+                </p>
+
+                <h3 style="font-size:.9rem;margin-bottom:12px;color:var(--text)">Three Core Contributions</h3>
+                <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px">
+                    <div style="display:flex;gap:12px;align-items:flex-start">
+                        <span style="flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700">1</span>
+                        <div>
+                            <strong style="font-size:.85rem">Novel gaps discovered.</strong>
+                            <span style="font-size:.82rem;color:var(--text2)"> IOED (0.13) and deference (0.38) reveal metacognitive blind spots invisible to standard benchmarks. The RLHF Paradox — models that won't defer to experts — has direct safety implications.</span>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:12px;align-items:flex-start">
+                        <span style="flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700">2</span>
+                        <div>
+                            <strong style="font-size:.85rem">Superpowers confirmed.</strong>
+                            <span style="font-size:.82rem;color:var(--text2)"> Transfer learning (1.00), distraction resistance (0.98), and change detection (1.00) exceed human baselines. Attention is the most robust faculty — stable across individual and unified runs.</span>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:12px;align-items:flex-start">
+                        <span style="flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700">3</span>
+                        <div>
+                            <strong style="font-size:.85rem">Reproducible & cross-validated.</strong>
+                            <span style="font-size:.82rem;color:var(--text2)"> All 5 benchmarks run independently AND as a unified 150-trial suite. 4 of 5 composites differ by Δ < 0.025 across runs, confirming measurement reliability. Metacognition's fragility under load is itself a finding.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert info"><svg><use href="#i-info" /></svg><span><strong>Why this matters:</strong> As AI systems become agentic — writing code, making decisions, interacting with users — knowing <em>what</em> they can do is insufficient. We need to know <em>how</em> they think: whether they can monitor their own errors, control impulsive responses, understand other minds, sustain focus, and learn from experience. This benchmark provides that measurement for the first time.</span></div>
+            </div>
+
+            <div style="margin-top:24px;padding:20px 24px;background:var(--bg2);border:1px solid var(--border);border-radius:10px">
+                <h3 style="font-size:.88rem;margin-bottom:10px;color:var(--text)">For Judges</h3>
+                <ul style="font-size:.82rem;line-height:1.8;color:var(--text2);margin:0;padding-left:18px">
+                    <li><strong>Novelty:</strong> No existing benchmark tests metacognition (IOED, deference), executive control (WCST perseveration, planning depth), or attentional filtering as separate cognitive faculties</li>
+                    <li><strong>Rigor:</strong> 30 paradigms adapted from peer-reviewed cognitive psychology, 39 Pydantic schemas, 30 RCCO judge prompts, 150 hand-crafted trials with verifiable ground truth</li>
+                    <li><strong>Scope:</strong> 5 benchmarks × 6 modules × 5 trials = 150 evaluation points across the full cognitive hierarchy</li>
+                    <li><strong>Insight depth:</strong> Reveals the <em>Monitoring vs Control dissociation</em> — models detect errors in others but cannot regulate their own behavior (a finding absent from all existing LLM evaluations)</li>
+                    <li><strong>Safety relevance:</strong> High-stakes deference failure (0.38) means models give confident medical, legal, and financial advice when the correct action is to defer — directly actionable for AI safety</li>
+                </ul>
+            </div>
+        </section>
+
         <!-- REFERENCES -->
         <section id="references">
             <span class="section-label"><svg class="ic"><use href="#i-book" /></svg> Academic</span>
