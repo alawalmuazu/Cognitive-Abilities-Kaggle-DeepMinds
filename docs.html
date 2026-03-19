@@ -273,17 +273,17 @@
         <section id="results">
             <span class="section-label"><svg class="ic"><use href="#i-chart" /></svg> Results</span>
             <h2>Cognitive Profile</h2>
-            <p class="desc">Gemini 2.5 Flash evaluated across all 5 cognitive faculties. Combined runtime: ~24 minutes across 150 trials.</p>
+            <p class="desc">Gemini 2.5 Flash evaluated across all 5 cognitive faculties. Combined runtime: ~24 minutes across 150 trials. <strong>Overall Composite: 0.836</strong></p>
 
             <div class="arch-box">
                 <div class="bar-group">
-                    <div class="bar-row"><span class="bar-label">Attention</span><div class="bar-track"><div class="bar-fill teal" style="width:95.3%">0.953</div></div></div>
-                    <div class="bar-row"><span class="bar-label">Social Cognition</span><div class="bar-track"><div class="bar-fill blue" style="width:94.8%">0.948</div></div></div>
-                    <div class="bar-row"><span class="bar-label">Learning</span><div class="bar-track"><div class="bar-fill amber" style="width:91.6%">0.916</div></div></div>
-                    <div class="bar-row"><span class="bar-label">Executive Functions</span><div class="bar-track"><div class="bar-fill green" style="width:82.8%">0.828</div></div></div>
-                    <div class="bar-row"><span class="bar-label">Metacognition</span><div class="bar-track"><div class="bar-fill red" style="width:76.8%">0.768</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Attention</span><div class="bar-track"><div class="bar-fill teal" style="width:96.5%">0.965</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Learning</span><div class="bar-track"><div class="bar-fill blue" style="width:93.0%">0.930</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Social Cognition</span><div class="bar-track"><div class="bar-fill green" style="width:92.8%">0.928</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Executive Functions</span><div class="bar-track"><div class="bar-fill amber" style="width:78.9%">0.789</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Metacognition</span><div class="bar-track"><div class="bar-fill red" style="width:57.0%">0.570</div></div></div>
                 </div>
-                <div class="alert info" style="margin-top:18px"><svg><use href="#i-info" /></svg><span><strong>Key insight:</strong> The model's strongest faculties are <strong>outward-facing</strong> (attention, social perception); its weakest are <strong>self-directed</strong> (metacognition, executive control). It can detect errors in others but cannot regulate its own behavior.</span></div>
+                <div class="alert info" style="margin-top:18px"><svg><use href="#i-info" /></svg><span><strong>Key insight:</strong> The model's strongest faculties are <strong>outward-facing</strong> (attention, social perception); its weakest are <strong>self-directed</strong> (metacognition, executive control). IOED scored <strong>0.13</strong> — the deepest failure of metacognitive recalibration.</span></div>
             </div>
         </section>
 
@@ -294,83 +294,82 @@
             <p class="desc">Each benchmark adapts 6 published paradigms from cognitive psychology for LLM evaluation.</p>
 
             <details class="accordion" open>
-                <summary><svg><use href="#i-brain" /></svg> Benchmark 1: The Dunning-Kruger Probe — Metacognition (0.768)</summary>
+                <summary><svg><use href="#i-brain" /></svg> Benchmark 1: The Dunning-Kruger Probe — Metacognition (0.570)</summary>
                 <div class="inner">
                     <p>Does the model know what it knows? Tests confidence calibration, explanatory depth, epistemic vigilance, resilience under social pressure, and deference to expertise.</p>
                     <table class="doc-table">
                         <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
-                        <tr><td>Feeling of Knowing</td><td>FOK judgment accuracy</td><td>Hart, 1965</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Illusion of Explanatory Depth</td><td>Pre/post confidence shift</td><td>Rozenblit & Keil, 2002</td><td class="s-mid">0.62</td></tr>
+                        <tr><td>Feeling of Knowing</td><td>FOK judgment accuracy</td><td>Hart, 1965</td><td class="s-mid">0.68</td></tr>
+                        <tr><td>Illusion of Explanatory Depth</td><td>Pre/post confidence shift</td><td>Rozenblit & Keil, 2002</td><td class="s-low">0.13</td></tr>
                         <tr><td>Dunning-Kruger Calibration</td><td>Easy vs hard calibration</td><td>Kruger & Dunning, 1999</td><td class="s-mid">0.68</td></tr>
-                        <tr><td>Epistemic Vigilance</td><td>Fabricated citation detection</td><td>Sperber et al., 2010</td><td class="s-high">0.92</td></tr>
-                        <tr><td>Socratic Stress Test</td><td>Persuasion resistance</td><td>Novel (Asch, 1951)</td><td class="s-high">0.96</td></tr>
-                        <tr><td>High-Stakes Deference</td><td>Expert deference</td><td>Lichtenstein et al., 1982</td><td class="s-low">0.40</td></tr>
+                        <tr><td>Socratic Stress Test</td><td>Persuasion resistance</td><td>Novel (Asch, 1951)</td><td class="s-high">0.92</td></tr>
+                        <tr><td>High-Stakes Deference</td><td>Expert deference</td><td>Lichtenstein et al., 1982</td><td class="s-low">0.38</td></tr>
                     </table>
-                    <div class="alert warn"><svg><use href="#i-info" /></svg><span><strong>RLHF Paradox:</strong> 0.96 resilience but only 0.40 deference. The model won't abandon correct beliefs, but also won't admit when it should defer to experts.</span></div>
+                    <div class="alert warn"><svg><use href="#i-info" /></svg><span><strong>IOED Collapse:</strong> Illusion of Explanatory Depth scored 0.13 — the lowest across all 30 modules. The model maintains confidence even after failed explanations. RLHF Paradox: 0.92 resilience but 0.38 deference (Δ = 0.54).</span></div>
                 </div>
             </details>
 
             <details class="accordion">
-                <summary><svg><use href="#i-zap" /></svg> Benchmark 2: Cognitive Control — Executive Functions (0.828)</summary>
+                <summary><svg><use href="#i-zap" /></svg> Benchmark 2: Cognitive Control — Executive Functions (0.789)</summary>
                 <div class="inner">
                     <p>Can the model control its own cognition? Tests inhibitory control, cognitive flexibility, planning depth, response inhibition, working memory, and switch cost.</p>
                     <table class="doc-table">
                         <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
-                        <tr><td>Stroop Interference</td><td>Inhibitory control</td><td>Stroop, 1935</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Wisconsin Card Sort</td><td>Rule-change adaptation</td><td>Grant & Berg, 1948</td><td class="s-mid">0.68</td></tr>
-                        <tr><td>Tower of London</td><td>Multi-step planning</td><td>Shallice, 1982</td><td class="s-low">0.48</td></tr>
+                        <tr><td>Stroop Interference</td><td>Inhibitory control</td><td>Stroop, 1935</td><td class="s-high">0.90</td></tr>
+                        <tr><td>Wisconsin Card Sort</td><td>Rule-change adaptation</td><td>Grant & Berg, 1948</td><td class="s-mid">0.72</td></tr>
+                        <tr><td>Tower of London</td><td>Multi-step planning</td><td>Shallice, 1982</td><td class="s-mid">0.60</td></tr>
                         <tr><td>Go / No-Go</td><td>Response inhibition</td><td>Donders, 1868</td><td class="s-high">0.98</td></tr>
-                        <tr><td>Dual N-Back</td><td>Working memory updating</td><td>Kirchner, 1958</td><td class="s-high">0.86</td></tr>
-                        <tr><td>Task Switching</td><td>Switch cost measurement</td><td>Rogers & Monsell, 1995</td><td class="s-high">0.96</td></tr>
+                        <tr><td>Dual N-Back</td><td>Working memory updating</td><td>Kirchner, 1958</td><td class="s-mid">0.64</td></tr>
+                        <tr><td>Task Switching</td><td>Switch cost measurement</td><td>Rogers & Monsell, 1995</td><td class="s-perfect">1.00</td></tr>
                     </table>
-                    <div class="alert warn"><svg><use href="#i-info" /></svg><span><strong>Planning Deficit:</strong> Tower of London (0.48) is the lowest module across all 30 — models struggle with multi-step look-ahead requiring temporary regression.</span></div>
+                    <div class="alert warn"><svg><use href="#i-info" /></svg><span><strong>Planning Deficit:</strong> Tower of London (0.60) and N-Back (0.64) reveal unstable multi-step reasoning — models struggle with look-ahead requiring temporary regression.</span></div>
                 </div>
             </details>
 
             <details class="accordion">
-                <summary><svg><use href="#i-sparkle" /></svg> Benchmark 3: SocialMind — Social Cognition (0.948)</summary>
+                <summary><svg><use href="#i-sparkle" /></svg> Benchmark 3: SocialMind — Social Cognition (0.928)</summary>
                 <div class="inner">
                     <p>Can the model understand other minds? Tests Theory of Mind, perspective-taking, social norms, deception detection, empathic accuracy, and game-theoretic reasoning.</p>
                     <table class="doc-table">
                         <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
-                        <tr><td>False Belief / ToM</td><td>Sally-Anne type tasks</td><td>Baron-Cohen et al., 1985</td><td class="s-high">0.98</td></tr>
-                        <tr><td>Perspective-Taking</td><td>Spatial / knowledge asymmetry</td><td>Piaget, 1956</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Social Norm Understanding</td><td>Descriptive vs injunctive norms</td><td>Bicchieri, 2006</td><td class="s-high">0.88</td></tr>
-                        <tr><td>Deception Detection</td><td>Manipulation identification</td><td>Ekman, 1985</td><td class="s-high">0.96</td></tr>
-                        <tr><td>Empathic Accuracy</td><td>Masked emotion inference</td><td>Ickes, 1993</td><td class="s-high">0.92</td></tr>
-                        <tr><td>Social Dilemma Reasoning</td><td>Prisoner's dilemma variants</td><td>Axelrod, 1984</td><td class="s-high">0.92</td></tr>
+                        <tr><td>False Belief / ToM</td><td>Sally-Anne type tasks</td><td>Baron-Cohen et al., 1985</td><td class="s-high">0.92</td></tr>
+                        <tr><td>Perspective-Taking</td><td>Spatial / knowledge asymmetry</td><td>Piaget, 1956</td><td class="s-high">0.96</td></tr>
+                        <tr><td>Social Norm Understanding</td><td>Descriptive vs injunctive norms</td><td>Bicchieri, 2006</td><td class="s-high">0.86</td></tr>
+                        <tr><td>Deception Detection</td><td>Manipulation identification</td><td>Ekman, 1985</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Empathic Accuracy</td><td>Masked emotion inference</td><td>Ickes, 1993</td><td class="s-high">0.96</td></tr>
+                        <tr><td>Social Dilemma Reasoning</td><td>Prisoner's dilemma variants</td><td>Axelrod, 1984</td><td class="s-high">0.86</td></tr>
                     </table>
                 </div>
             </details>
 
             <details class="accordion">
-                <summary><svg><use href="#i-target" /></svg> Benchmark 4: FocusProbe — Attention (0.953)</summary>
+                <summary><svg><use href="#i-target" /></svg> Benchmark 4: FocusProbe — Attention (0.965)</summary>
                 <div class="inner">
                     <p>Can the model filter, sustain, and divide focus? Tests selective attention, vigilance, change detection, distraction resistance, dual-task performance, and set-shifting.</p>
                     <table class="doc-table">
                         <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
-                        <tr><td>Selective Attention</td><td>Channel filtering</td><td>Cherry, 1953</td><td class="s-high">0.88</td></tr>
+                        <tr><td>Selective Attention</td><td>Channel filtering</td><td>Cherry, 1953</td><td class="s-perfect">1.00</td></tr>
                         <tr><td>Sustained Attention</td><td>Vigilance over long passages</td><td>Mackworth, 1948</td><td class="s-high">0.96</td></tr>
                         <tr><td>Change Blindness</td><td>Subtle modification detection</td><td>Simons & Chabris, 1999</td><td class="s-perfect">1.00</td></tr>
                         <tr><td>Distraction Resistance</td><td>Prompt injection immunity</td><td>Theeuwes, 1992</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Divided Attention</td><td>Dual-task performance</td><td>Pashler, 1994</td><td class="s-high">0.98</td></tr>
-                        <tr><td>Set-Shifting</td><td>Rule-change detection</td><td>Owen et al., 1991</td><td class="s-high">0.92</td></tr>
+                        <tr><td>Divided Attention</td><td>Dual-task performance</td><td>Pashler, 1994</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Set-Shifting</td><td>Rule-change detection</td><td>Owen et al., 1991</td><td class="s-high">0.82</td></tr>
                     </table>
                     <div class="alert success"><svg><use href="#i-info" /></svg><span><strong>Perfect Immunity:</strong> Distraction Resistance scored 1.00 — complete immunity to injected false corrections, fake system alerts, and redirect attempts.</span></div>
                 </div>
             </details>
 
             <details class="accordion">
-                <summary><svg><use href="#i-book" /></svg> Benchmark 5: AdaptIQ — Learning (0.916)</summary>
+                <summary><svg><use href="#i-book" /></svg> Benchmark 5: AdaptIQ — Learning (0.930)</summary>
                 <div class="inner">
                     <p>Can the model learn new rules within a single context window? Tests rule induction, feedback-based learning, statistical regularities, analogical transfer, and curriculum sensitivity.</p>
                     <table class="doc-table">
                         <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
                         <tr><td>Rule Induction</td><td>Few-shot rule discovery</td><td>Bruner, 1956</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Feedback Learning</td><td>Correct/incorrect adaptation</td><td>Skinner, 1938</td><td class="s-mid">0.76</td></tr>
-                        <tr><td>Statistical Learning</td><td>Distributional regularities</td><td>Saffran et al., 1996</td><td class="s-high">0.90</td></tr>
+                        <tr><td>Feedback Learning</td><td>Correct/incorrect adaptation</td><td>Skinner, 1938</td><td class="s-high">0.80</td></tr>
+                        <tr><td>Statistical Learning</td><td>Distributional regularities</td><td>Saffran et al., 1996</td><td class="s-high">0.88</td></tr>
                         <tr><td>Transfer Learning</td><td>Cross-domain analogy</td><td>Gick & Holyoak, 1983</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Learning Curves</td><td>Predicting learning dynamics</td><td>Ebbinghaus, 1885</td><td class="s-high">0.86</td></tr>
+                        <tr><td>Learning Curves</td><td>Predicting learning dynamics</td><td>Ebbinghaus, 1885</td><td class="s-high">0.92</td></tr>
                         <tr><td>Curriculum Sensitivity</td><td>Example ordering effects</td><td>Vygotsky, 1978</td><td class="s-perfect">1.00</td></tr>
                     </table>
                     <div class="alert info"><svg><use href="#i-info" /></svg><span><strong>Transfer Superpower:</strong> Perfect 1.00 across five domain pairs, exceeding typical human performance on Duncker's radiation problem (~30% solve without hints).</span></div>
@@ -415,12 +414,12 @@
                 <div class="card">
                     <div class="card-icon"><svg><use href="#i-zap" /></svg></div>
                     <h3>The RLHF Paradox</h3>
-                    <p>0.96 resilience but 0.40 deference. RLHF creates models that are confidently assertive regardless of whether humility is appropriate. <strong>Δ = 0.56</strong></p>
+                    <p>0.92 resilience but 0.38 deference. RLHF creates models that are confidently assertive regardless of whether humility is appropriate. <strong>Δ = 0.54</strong></p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><svg><use href="#i-target" /></svg></div>
-                    <h3>Monitoring vs Control</h3>
-                    <p>Models excel at detecting errors in others (avg: 0.96) but fail at regulating their own behavior (avg: 0.44). They see the problem but can't stop themselves.</p>
+                    <h3>IOED Collapse</h3>
+                    <p>Illusion of Explanatory Depth scored <strong>0.13</strong> — the lowest across all 30 modules. The model maintains confidence even after explanations reveal shallow understanding.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><svg><use href="#i-sparkle" /></svg></div>
@@ -430,7 +429,7 @@
                 <div class="card">
                     <div class="card-icon"><svg><use href="#i-info" /></svg></div>
                     <h3>Right-Answer-Wrong-Reason</h3>
-                    <p>Feedback learning (0.76) reveals correct outputs with incorrect rule discovery. Pattern-matching without causal understanding — a fundamental limitation.</p>
+                    <p>Feedback learning (0.80) and N-Back (0.64) reveal inconsistent performance — pattern-matching without stable causal understanding.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><svg><use href="#i-layers" /></svg></div>
@@ -474,11 +473,11 @@
             <p class="desc">Each benchmark runs as an independent Kaggle notebook with full execution output.</p>
             <table class="doc-table">
                 <tr><th>Benchmark</th><th>Name</th><th>Composite</th><th>Link</th></tr>
-                <tr><td>1. Metacognition</td><td>The Dunning-Kruger Probe</td><td class="s-mid">0.768</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/metacognition-agi-do-models-know-what-they-don-t" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
-                <tr><td>2. Executive Functions</td><td>Cognitive Control</td><td class="s-high">0.828</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/executive-functions-benchmark-cognitive-control" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
-                <tr><td>3. Social Cognition</td><td>SocialMind</td><td class="s-high">0.948</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/social-cognition-benchmark-socialmind" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
-                <tr><td>4. Attention</td><td>FocusProbe</td><td class="s-high">0.953</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/attention-benchmark-focusprobe" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
-                <tr><td>5. Learning</td><td>AdaptIQ</td><td class="s-high">0.916</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/learning-track-benchmark-adaptiq" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>1. Metacognition</td><td>The Dunning-Kruger Probe</td><td class="s-mid">0.570</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/metacognition-agi-do-models-know-what-they-don-t" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>2. Executive Functions</td><td>Cognitive Control</td><td class="s-mid">0.789</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/executive-functions-benchmark-cognitive-control" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>3. Social Cognition</td><td>SocialMind</td><td class="s-high">0.928</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/social-cognition-benchmark-socialmind" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>4. Attention</td><td>FocusProbe</td><td class="s-high">0.965</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/attention-benchmark-focusprobe" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>5. Learning</td><td>AdaptIQ</td><td class="s-high">0.930</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/learning-track-benchmark-adaptiq" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
             </table>
         </section>
 

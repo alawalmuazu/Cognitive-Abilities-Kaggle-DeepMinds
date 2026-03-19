@@ -18,15 +18,15 @@ Current benchmarks test what models know — not how they think. This submission
 
 ### Task & Benchmark Construction
 
-**Battery 1: The Dunning-Kruger Probe (Metacognition)** — 6 modules: Feeling of Knowing (Hart, 1965), Illusion of Explanatory Depth (Rozenblit & Keil, 2002), Dunning-Kruger Calibration (Kruger & Dunning, 1999), Epistemic Vigilance (Sperber et al., 2010), Socratic Stress Test (Novel, inspired by Asch, 1951), High-Stakes Deference (Lichtenstein et al., 1982). Models rate confidence, attempt explanations then re-rate, evaluate fabricated citations, face persuasive-but-wrong challenges, and navigate high-stakes scenarios requiring expert deference.
+**Benchmark 1: The Dunning-Kruger Probe (Metacognition)** — 6 modules: Feeling of Knowing (Hart, 1965), Illusion of Explanatory Depth (Rozenblit & Keil, 2002), Dunning-Kruger Calibration (Kruger & Dunning, 1999), Epistemic Vigilance (Sperber et al., 2010), Socratic Stress Test (Novel, inspired by Asch, 1951), High-Stakes Deference (Lichtenstein et al., 1982). Models rate confidence, attempt explanations then re-rate, evaluate fabricated citations, face persuasive-but-wrong challenges, and navigate high-stakes scenarios requiring expert deference.
 
-**Battery 2: Cognitive Control (Executive Functions)** — 6 modules: Stroop Interference (1935), Wisconsin Card Sort (Grant & Berg, 1948), Tower of London (Shallice, 1982), Go/No-Go (Donders, 1868), Dual N-Back (Kirchner, 1958), Task Switching (Rogers & Monsell, 1995). Tests inhibitory control, cognitive flexibility, planning depth, response inhibition, working memory, and switch cost.
+**Benchmark 2: Cognitive Control (Executive Functions)** — 6 modules: Stroop Interference (1935), Wisconsin Card Sort (Grant & Berg, 1948), Tower of London (Shallice, 1982), Go/No-Go (Donders, 1868), Dual N-Back (Kirchner, 1958), Task Switching (Rogers & Monsell, 1995). Tests inhibitory control, cognitive flexibility, planning depth, response inhibition, working memory, and switch cost.
 
-**Battery 3: SocialMind (Social Cognition)** — 6 modules: False Belief/ToM (Baron-Cohen et al., 1985), Perspective-Taking (Piaget, 1956), Social Norm Understanding (Bicchieri, 2006), Deception Detection (Ekman, 1985), Empathic Accuracy (Ickes, 1993), Social Dilemma Reasoning (Axelrod, 1984). Tests whether models can track false beliefs, shift perspectives, distinguish descriptive from injunctive norms, identify manipulation, infer masked emotions, and reason through game-theoretic scenarios.
+**Benchmark 3: SocialMind (Social Cognition)** — 6 modules: False Belief/ToM (Baron-Cohen et al., 1985), Perspective-Taking (Piaget, 1956), Social Norm Understanding (Bicchieri, 2006), Deception Detection (Ekman, 1985), Empathic Accuracy (Ickes, 1993), Social Dilemma Reasoning (Axelrod, 1984). Tests whether models can track false beliefs, shift perspectives, distinguish descriptive from injunctive norms, identify manipulation, infer masked emotions, and reason through game-theoretic scenarios.
 
-**Battery 4: FocusProbe (Attention)** — 6 modules: Selective Attention (Cherry, 1953), Sustained Attention (Mackworth, 1948), Change Blindness (Simons & Chabris, 1999), Distraction Resistance (Theeuwes, 1992), Divided Attention (Pashler, 1994), Set-Shifting (Owen et al., 1991). Tests channel filtering, vigilance, subtle change detection, resistance to injected distractors (fake corrections, system alerts), dual-task performance, and rule-change detection.
+**Benchmark 4: FocusProbe (Attention)** — 6 modules: Selective Attention (Cherry, 1953), Sustained Attention (Mackworth, 1948), Change Blindness (Simons & Chabris, 1999), Distraction Resistance (Theeuwes, 1992), Divided Attention (Pashler, 1994), Set-Shifting (Owen et al., 1991). Tests channel filtering, vigilance, subtle change detection, resistance to injected distractors (fake corrections, system alerts), dual-task performance, and rule-change detection.
 
-**Battery 5: AdaptIQ (Learning)** — 6 modules: Rule Induction (Bruner, 1956), Feedback Learning (Skinner, 1938), Statistical Learning (Saffran et al., 1996), Transfer Learning (Gick & Holyoak, 1983), Learning Curves (Ebbinghaus, 1885), Curriculum Sensitivity (Vygotsky, 1978). Tests in-context rule discovery, learning from correct/incorrect feedback, extracting distributional regularities, cross-domain analogical transfer, predicting learning dynamics, and sensitivity to example ordering.
+**Benchmark 5: AdaptIQ (Learning)** — 6 modules: Rule Induction (Bruner, 1956), Feedback Learning (Skinner, 1938), Statistical Learning (Saffran et al., 1996), Transfer Learning (Gick & Holyoak, 1983), Learning Curves (Ebbinghaus, 1885), Curriculum Sensitivity (Vygotsky, 1978). Tests in-context rule discovery, learning from correct/incorrect feedback, extracting distributional regularities, cross-domain analogical transfer, predicting learning dynamics, and sensitivity to example ordering.
 
 All 30 modules use RCCO judge prompts with kbench.judge_llm, Pydantic schemas for structured output, and kbench.chats.new() for conversation isolation.
 
@@ -34,47 +34,49 @@ All 30 modules use RCCO judge prompts with kbench.judge_llm, Pydantic schemas fo
 
 ### Dataset
 
-**150 hand-crafted trials** (30 per battery, 5 per module). Each trial has verifiable ground truth and difficulty gradients. All scenarios original. Fabricated citations in Battery 1 are absent from any training data. Battery 2 puzzles have verified optimal solutions. Battery 4 trials have objectively verifiable correct answers. Battery 5 rules are deterministic.
+**150 hand-crafted trials** (30 per battery, 5 per module). Each trial has verifiable ground truth and difficulty gradients. All scenarios original. Fabricated citations in Benchmark 1 are absent from any training data. Benchmark 2 puzzles have verified optimal solutions. Benchmark 4 trials have objectively verifiable correct answers. Benchmark 5 rules are deterministic.
 
 ---
 
 ### Technical Details
 
 - **SDK**: @kbench.task, llm.prompt(schema=), kbench.chats.new(), task.evaluate()
-- **39 Pydantic schemas** across all 5 batteries
+- **39 Pydantic schemas** across all 5 benchmarks
 - **30 RCCO judge prompts** — metacognition prioritizes calibration; executive prompts prioritize CONTROL; social prompts prioritize reasoning depth; attention prompts prioritize filtering accuracy; learning prompts prioritize rule discovery
-- **Equal weighting per battery**: Primary modules (20% each) + secondary modules (15% each)
+- **Equal weighting per benchmark**: composite = mean of all 5 battery scores
 - **Judge LLM**: gemini-3.1-flash-lite-preview
 
 ---
 
 ### Results, Insights, and Conclusions
 
-Model: **Gemini 2.5 Flash** | Combined Runtime: ~24 minutes across 150 trials
+Model: **Gemini 2.5 Flash** | Combined Runtime: ~24 minutes across 150 trials | **Overall Composite: 0.836**
 
-| Battery | Composite | Module Scores |
-|---------|-----------|--------------|
-| **Metacognition** | **0.768** | FOK: 1.00, IOED: 0.62, DK: 0.68, Vigilance: 0.92, Socratic: 0.96, Deference: **0.40** |
-| **Executive Functions** | **0.828** | Stroop: 1.00, WCST: 0.68, Tower: **0.48**, Go/No-Go: 0.98, N-Back: 0.86, Switch: 0.96 |
-| **Social Cognition** | **0.948** | Belief: 0.98, Perspective: 1.00, Norms: 0.88, Deception: 0.96, Empathy: 0.92, Dilemma: 0.92 |
-| **Attention** | **0.953** | Selective: 0.88, Sustained: 0.96, Change: 1.00, Distraction: 1.00, Divided: 0.98, Shift: 0.92 |
-| **Learning** | **0.916** | Rules: 1.00, Feedback: **0.76**, Statistical: 0.90, Transfer: 1.00, Curves: 0.86, Curriculum: 1.00 |
+| Benchmark | Composite | Module Scores |
+|-----------|-----------|---------------|
+| **Metacognition** | **0.570** | FOK: 0.68, IOED: **0.13**, DK: 0.68, Socratic: 0.92, Deference: **0.38** |
+| **Executive Functions** | **0.789** | Stroop: 0.90, WCST: 0.72, Tower: **0.60**, Go/No-Go: 0.98, N-Back: 0.64, Switch: 1.00 |
+| **Social Cognition** | **0.928** | Belief: 0.92, Perspective: 0.96, Norms: 0.86, Deception: 1.00, Empathy: 0.96, Dilemma: 0.86 |
+| **Attention** | **0.965** | Selective: 1.00, Sustained: 0.96, Change: 1.00, Distraction: 1.00, Divided: 1.00, Shift: 0.82 |
+| **Learning** | **0.930** | Rules: 1.00, Feedback: 0.80, Statistical: 0.88, Transfer: 1.00, Curves: 0.92, Curriculum: 1.00 |
 
-**The Cognitive Profile:** Attention (0.953) ≈ Social Cognition (0.948) > Learning (0.916) > Executive Functions (0.828) > Metacognition (0.768). The model's strongest faculties are outward-facing; its weakest are self-directed.
+**The Cognitive Profile:** Attention (0.965) > Social Cognition (0.928) > Learning (0.930) > Executive Functions (0.789) > Metacognition (0.570). The model's strongest faculties are outward-facing; its weakest are self-directed.
 
 **Key Findings:**
 
-1. **The RLHF Paradox.** 0.96 resilience (won't abandon correct beliefs) but 0.40 deference (won't admit it should defer). RLHF creates models that are assertive regardless of whether humility is appropriate.
+1. **The RLHF Paradox.** 0.92 resilience (won't abandon correct beliefs) but 0.38 deference (won't admit it should defer). RLHF creates models that are assertive regardless of whether humility is appropriate. Δ = 0.54.
 
-2. **Monitoring vs Control Dissociation.** Models excel at Monitoring (vigilance: 0.92, Stroop: 1.00, deception: 0.96) but fail at Control (deference: 0.40, planning: 0.48). They detect errors in others but cannot regulate their own behavior.
+2. **The Illusion of Depth Collapse.** IOED scored 0.13 — the lowest module across all 30. Models maintain confidence even after attempting explanations that should reveal their shallow understanding. Pre/post confidence recalibration is nearly absent.
 
-3. **Transfer Learning Is a Superpower.** Perfect 1.00 across five domain pairs — exceeding typical human performance on Duncker's radiation problem (~30% solve without hints).
+3. **Monitoring vs Control Dissociation.** Models excel at Monitoring (distraction: 1.00, deception: 1.00, Go/No-Go: 0.98) but fail at Control (deference: 0.38, IOED: 0.13). They detect errors in others but cannot regulate their own behavior.
 
-4. **The Right-Answer-Wrong-Reason Problem.** Feedback learning (0.76) reveals correct outputs paired with incorrect rule discovery — pattern-matching without causal understanding.
+4. **Transfer Learning Is a Superpower.** Perfect 1.00 across five domain pairs — exceeding typical human performance on Duncker's radiation problem (~30% solve without hints).
 
-5. **Perfect Prompt Injection Resistance.** Distraction resistance (1.00) — complete immunity to injected corrections, fake system alerts, redirect attempts.
+5. **The Right-Answer-Wrong-Reason Problem.** Feedback learning (0.80) and N-Back (0.64) reveal inconsistent performance — pattern-matching without stable causal understanding.
 
-6. **Clinical Pattern Match.** The cognitive profile (strong attention/social perception, weak planning, absent deference) mirrors specific human neurocognitive profiles.
+6. **Perfect Prompt Injection Resistance.** Distraction resistance (1.00) — complete immunity to injected corrections, fake system alerts, redirect attempts.
+
+7. **Clinical Pattern Match.** The cognitive profile (strong attention/social perception, weak planning, absent metacognitive recalibration) mirrors specific human neurocognitive profiles.
 
 ---
 
