@@ -1,622 +1,552 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Cognitive Assessment Benchmark — Documentation</title>
-  <meta name="description" content="5 batteries, 30 paradigms, 150 trials probing metacognition, executive control, social cognition, attention, and learning in frontier LLMs.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #12121a;
-      --bg-card: #1a1a28;
-      --bg-card-hover: #222236;
-      --border: #2a2a40;
-      --text-primary: #e8e8f0;
-      --text-secondary: #9898b0;
-      --text-dim: #686880;
-      --accent-blue: #4d8eff;
-      --accent-purple: #8b5cf6;
-      --accent-green: #10b981;
-      --accent-amber: #f59e0b;
-      --accent-rose: #f43f5e;
-      --accent-cyan: #06b6d4;
-      --gradient-hero: linear-gradient(135deg, #4d8eff22 0%, #8b5cf622 50%, #10b98122 100%);
-      --gradient-blue: linear-gradient(135deg, #4d8eff, #8b5cf6);
-      --gradient-green: linear-gradient(135deg, #10b981, #06b6d4);
-      --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
-      --shadow-glow: 0 0 40px rgba(77,142,255,0.1);
-      --radius: 16px;
-      --radius-sm: 10px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cognitive Assessment Benchmark — Documentation</title>
+    <meta name="description" content="5 benchmarks, 30 paradigms, 150 trials probing metacognition, executive control, social cognition, attention, and learning in LLMs.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --bg2: #ffffff;
+            --bg3: #f1f5f9;
+            --text: #1e293b;
+            --text2: #475569;
+            --text3: #94a3b8;
+            --accent: #0f766e;
+            --accent-light: #ccfbf1;
+            --accent-hover: #115e59;
+            --border: #e2e8f0;
+            --code-bg: #f1f5f9;
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .06);
+            --card-hover: 0 4px 12px rgba(0, 0, 0, .08);
+            --success: #16a34a;
+            --warn: #d97706;
+            --info: #0284c7;
+            --danger: #dc2626;
+            --subtle-bg: rgba(15, 118, 110, .04)
+        }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg2: #1e293b;
+            --bg3: #334155;
+            --text: #e2e8f0;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --accent: #2dd4bf;
+            --accent-light: rgba(45, 212, 191, .12);
+            --accent-hover: #5eead4;
+            --border: #334155;
+            --code-bg: #1e293b;
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+            --card-hover: 0 4px 12px rgba(0, 0, 0, .3);
+            --success: #22c55e;
+            --warn: #fbbf24;
+            --info: #38bdf8;
+            --danger: #f87171;
+            --subtle-bg: rgba(45, 212, 191, .06)
+        }
 
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box }
+        html { scroll-behavior: smooth; scroll-padding-top: 72px }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; transition: background .25s, color .25s }
 
-    /* ── Nav ── */
-    .nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      backdrop-filter: blur(20px) saturate(180%);
-      background: rgba(10,10,15,0.85);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-    }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-brand {
-      font-weight: 800; font-size: 1.1rem;
-      background: var(--gradient-blue); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .nav-links { display: flex; gap: 1.5rem; }
-    .nav-links a {
-      color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;
-      font-weight: 500; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text-primary); }
+        /* TOPBAR */
+        .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bg2); border-bottom: 1px solid var(--border); transition: all .25s }
+        .topbar-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between }
+        .logo { font-weight: 700; font-size: 1rem; color: var(--text); display: flex; align-items: center; gap: 8px; text-decoration: none }
+        .logo svg { color: var(--accent) }
+        .topbar nav { display: flex; gap: 20px; align-items: center }
+        .topbar nav a { text-decoration: none; color: var(--text2); font-size: .82rem; font-weight: 500; transition: color .2s; letter-spacing: -.01em }
+        .topbar nav a:hover { color: var(--accent) }
+        .theme-btn { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; width: 34px; height: 34px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; color: var(--text2) }
+        .theme-btn:hover { border-color: var(--accent); color: var(--accent) }
+        .theme-btn svg { width: 16px; height: 16px }
 
-    /* ── Hero ── */
-    .hero {
-      padding: 10rem 2rem 5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle at 50% 30%, rgba(77,142,255,0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 30% 70%, rgba(139,92,246,0.06) 0%, transparent 40%),
-                  radial-gradient(circle at 70% 60%, rgba(16,185,129,0.05) 0%, transparent 40%);
-      animation: drift 20s ease-in-out infinite alternate;
-    }
-    @keyframes drift {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(-30px, 20px) rotate(2deg); }
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
-    .hero-badge {
-      display: inline-block; padding: 0.4rem 1rem; border-radius: 50px;
-      background: rgba(77,142,255,0.12); border: 1px solid rgba(77,142,255,0.25);
-      color: var(--accent-blue); font-size: 0.8rem; font-weight: 600;
-      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem;
-      letter-spacing: -0.02em;
-    }
-    .hero h1 .gradient {
-      background: var(--gradient-blue); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p {
-      font-size: 1.15rem; color: var(--text-secondary);
-      max-width: 650px; margin: 0 auto 2rem;
-    }
-    .hero-stats {
-      display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
-      margin-top: 2.5rem;
-    }
-    .hero-stat { text-align: center; }
-    .hero-stat .num {
-      font-size: 2.2rem; font-weight: 800;
-      background: var(--gradient-blue); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-stat .label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+        /* HERO */
+        .hero { margin-top: 56px; padding: 64px 24px 48px; text-align: center; background: var(--subtle-bg); border-bottom: 1px solid var(--border) }
+        .hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -.03em; margin-bottom: 10px; color: var(--text) }
+        .hero .sub { font-size: .95rem; color: var(--text2); max-width: 620px; margin: 0 auto 20px; line-height: 1.7 }
+        .badge-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap }
+        .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 6px; font-size: .72rem; font-weight: 600; background: var(--bg2); border: 1px solid var(--border); color: var(--text2); letter-spacing: .02em; text-decoration: none }
+        .badge .dot { width: 6px; height: 6px; border-radius: 50% }
 
-    /* ── Sections ── */
-    section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-header h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .section-header p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+        /* MAIN */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px 64px }
+        section { margin-bottom: 48px; position: relative; padding-top: 8px }
+        .section-label { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 6px }
+        .section-label svg { width: 14px; height: 14px }
+        section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -.02em }
+        section .desc { color: var(--text2); margin-bottom: 24px; max-width: 640px; font-size: .9rem }
+        .ic { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent) }
+        .ic-lg { width: 22px; height: 22px }
 
-    /* ── Profile Chart ── */
-    .profile-section { background: var(--bg-secondary); border-radius: var(--radius); padding: 3rem; margin-bottom: 2rem; border: 1px solid var(--border); }
-    .profile-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .profile-subtitle { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem; }
-    .profile-bar-group { display: flex; flex-direction: column; gap: 1rem; }
-    .profile-bar { display: flex; align-items: center; gap: 1rem; }
-    .profile-bar .label { width: 180px; font-size: 0.9rem; font-weight: 500; text-align: right; flex-shrink: 0; }
-    .profile-bar .bar-track {
-      flex: 1; height: 32px; background: rgba(255,255,255,0.04);
-      border-radius: 8px; overflow: hidden; position: relative;
-    }
-    .profile-bar .bar-fill {
-      height: 100%; border-radius: 8px;
-      display: flex; align-items: center; padding-left: 12px;
-      font-size: 0.8rem; font-weight: 700; color: white;
-      transition: width 1.5s cubic-bezier(0.22,1,0.36,1);
-    }
-    .bar-attention .bar-fill { background: linear-gradient(90deg, #06b6d4, #10b981); }
-    .bar-social .bar-fill { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-    .bar-learning .bar-fill { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-    .bar-executive .bar-fill { background: linear-gradient(90deg, #4d8eff, #60a5fa); }
-    .bar-metacognition .bar-fill { background: linear-gradient(90deg, #f43f5e, #fb7185); }
-    .profile-insight {
-      margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: var(--radius-sm);
-      background: rgba(77,142,255,0.06); border-left: 3px solid var(--accent-blue);
-      color: var(--text-secondary); font-size: 0.9rem;
-    }
-    .profile-insight strong { color: var(--text-primary); }
+        /* CARDS */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px }
+        .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 24px; transition: all .2s }
+        .card:hover { box-shadow: var(--card-hover); border-color: var(--accent) }
+        .card .card-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; background: var(--accent-light); color: var(--accent) }
+        .card .card-icon svg { width: 18px; height: 18px }
+        .card h3 { font-size: .95rem; font-weight: 600; margin-bottom: 4px; letter-spacing: -.01em }
+        .card p { font-size: .83rem; color: var(--text2); line-height: 1.6 }
 
-    /* ── Battery Cards ── */
-    .batteries-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-    .battery-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2rem;
-      transition: all 0.3s ease;
-      position: relative; overflow: hidden;
-    }
-    .battery-card:hover {
-      transform: translateY(-4px); border-color: rgba(77,142,255,0.3);
-      box-shadow: var(--shadow-glow);
-    }
-    .battery-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    }
-    .battery-card:nth-child(1)::before { background: var(--gradient-blue); }
-    .battery-card:nth-child(2)::before { background: linear-gradient(90deg, #f43f5e, #fb7185); }
-    .battery-card:nth-child(3)::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-    .battery-card:nth-child(4)::before { background: linear-gradient(90deg, #06b6d4, #10b981); }
-    .battery-card:nth-child(5)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        /* TABLE */
+        .doc-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: .83rem }
+        .doc-table th, .doc-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border) }
+        .doc-table th { background: var(--bg3); font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; color: var(--text3) }
+        .doc-table tr:hover td { background: var(--subtle-bg) }
 
-    .battery-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-    .battery-num { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
-    .battery-score-badge {
-      font-size: 1.5rem; font-weight: 800;
-      background: var(--gradient-blue); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .battery-card:nth-child(2) .battery-score-badge { background: linear-gradient(135deg, #f43f5e, #fb7185); -webkit-background-clip: text; }
-    .battery-card:nth-child(3) .battery-score-badge { background: linear-gradient(135deg, #8b5cf6, #a78bfa); -webkit-background-clip: text; }
-    .battery-card:nth-child(4) .battery-score-badge { background: linear-gradient(135deg, #06b6d4, #10b981); -webkit-background-clip: text; }
-    .battery-card:nth-child(5) .battery-score-badge { background: linear-gradient(135deg, #f59e0b, #fbbf24); -webkit-background-clip: text; }
-    .battery-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .battery-subtitle { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem; }
-    .battery-modules { display: flex; flex-direction: column; gap: 0.5rem; }
-    .module-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: 0.85rem;
-    }
-    .module-row:last-child { border: none; }
-    .module-name { color: var(--text-secondary); }
-    .module-cite { color: var(--text-dim); font-size: 0.75rem; }
-    .module-score { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
-    .score-perfect { color: var(--accent-green); }
-    .score-high { color: var(--accent-blue); }
-    .score-mid { color: var(--accent-amber); }
-    .score-low { color: var(--accent-rose); }
+        /* SCORE COLORS */
+        .s-perfect { color: var(--success); font-weight: 700 }
+        .s-high { color: var(--accent); font-weight: 600 }
+        .s-mid { color: var(--warn); font-weight: 600 }
+        .s-low { color: var(--danger); font-weight: 600 }
 
-    /* ── Findings ── */
-    .findings-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-    .finding-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.75rem;
-      transition: all 0.3s;
-    }
-    .finding-card:hover { border-color: rgba(77,142,255,0.3); }
-    .finding-num {
-      font-size: 0.7rem; font-weight: 700; color: var(--accent-blue);
-      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;
-    }
-    .finding-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .finding-body { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-    .finding-evidence {
-      margin-top: 0.75rem; padding: 0.5rem 0.75rem;
-      background: rgba(255,255,255,0.03); border-radius: 6px;
-      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
-      color: var(--accent-cyan);
-    }
+        /* ACCORDION */
+        .accordion { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 10px 0 }
+        .accordion summary { padding: 14px 18px; cursor: pointer; font-weight: 600; font-size: .88rem; background: var(--bg2); list-style: none; display: flex; align-items: center; gap: 10px; transition: background .2s; color: var(--text) }
+        .accordion summary:hover { background: var(--bg3) }
+        .accordion summary::before { content: ''; display: inline-block; width: 0; height: 0; border-left: 5px solid var(--text3); border-top: 4px solid transparent; border-bottom: 4px solid transparent; transition: transform .2s; flex-shrink: 0 }
+        .accordion[open] summary::before { transform: rotate(90deg) }
+        .accordion summary svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0 }
+        .accordion .inner { padding: 18px; background: var(--bg); border-top: 1px solid var(--border) }
 
-    /* ── Tech Stack ── */
-    .tech-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    .tech-item {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 1.25rem; text-align: center;
-    }
-    .tech-item .value { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.25rem; }
-    .tech-item .label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+        /* ALERT */
+        .alert { padding: 14px 18px; border-radius: 8px; margin: 14px 0; font-size: .83rem; border-left: 3px solid; display: flex; align-items: flex-start; gap: 10px; line-height: 1.6 }
+        .alert svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px }
+        .alert.info { background: rgba(2, 132, 199, .06); border-color: var(--info) }
+        .alert.info svg { color: var(--info) }
+        .alert.success { background: rgba(22, 163, 74, .06); border-color: var(--success) }
+        .alert.success svg { color: var(--success) }
+        .alert.warn { background: rgba(217, 119, 6, .06); border-color: var(--warn) }
+        .alert.warn svg { color: var(--warn) }
 
-    /* ── Links ── */
-    .links-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
-    }
-    .link-card {
-      display: flex; align-items: center; gap: 1rem;
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 1.25rem;
-      text-decoration: none; color: var(--text-primary);
-      transition: all 0.25s;
-    }
-    .link-card:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
-    .link-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
-    }
-    .link-icon.kaggle { background: rgba(77,142,255,0.12); }
-    .link-icon.github { background: rgba(255,255,255,0.08); }
-    .link-text .link-title { font-weight: 600; font-size: 0.95rem; }
-    .link-text .link-desc { font-size: 0.8rem; color: var(--text-dim); }
+        /* ARCH */
+        .arch-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 28px; overflow-x: auto }
+        .arch-flow { display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; margin: 16px 0 }
+        .arch-node { padding: 10px 16px; border-radius: 8px; font-size: .78rem; font-weight: 500; border: 1px solid var(--border); background: var(--bg3); white-space: nowrap; color: var(--text) }
+        .arch-node small { display: block; font-size: .68rem; color: var(--text3); font-weight: 400; margin-top: 2px }
+        .arch-node.primary { background: var(--accent); color: #fff; border-color: var(--accent) }
+        .arch-node.primary small { color: rgba(255, 255, 255, .7) }
+        .arch-arrow { color: var(--text3); font-size: .9rem; display: flex; align-items: center }
+        .arch-arrow svg { width: 16px; height: 16px }
 
-    /* ── References ── */
-    .ref-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 0.5rem;
-    }
-    .ref-item { font-size: 0.82rem; color: var(--text-dim); padding: 0.3rem 0; }
-    .ref-item strong { color: var(--text-secondary); font-weight: 500; }
+        /* PROFILE BARS */
+        .bar-group { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 }
+        .bar-row { display: flex; align-items: center; gap: 12px }
+        .bar-label { width: 160px; font-size: .82rem; font-weight: 500; text-align: right; flex-shrink: 0 }
+        .bar-track { flex: 1; height: 28px; background: var(--bg3); border-radius: 6px; overflow: hidden; position: relative }
+        .bar-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; font-size: .75rem; font-weight: 700; color: #fff; transition: width 1s ease }
+        .bar-fill.teal { background: var(--accent) }
+        .bar-fill.blue { background: var(--info) }
+        .bar-fill.amber { background: var(--warn) }
+        .bar-fill.green { background: var(--success) }
+        .bar-fill.red { background: var(--danger) }
 
-    /* ── Footer ── */
-    .footer {
-      text-align: center; padding: 3rem 2rem;
-      border-top: 1px solid var(--border);
-      color: var(--text-dim); font-size: 0.85rem;
-    }
-    .footer a { color: var(--accent-blue); text-decoration: none; }
+        /* FILE TREE */
+        .file-tree { background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; font-family: 'JetBrains Mono', monospace; font-size: .78rem; line-height: 2; overflow-x: auto }
+        .file-tree .dir { color: var(--accent); font-weight: 600 }
+        .file-tree .file { color: var(--text2) }
+        .file-tree .cmt { color: var(--text3); font-style: italic }
 
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .hero { padding: 8rem 1.5rem 3rem; }
-      section { padding: 3rem 1.5rem; }
-      .profile-bar .label { width: 120px; font-size: 0.8rem; }
-      .batteries-grid, .findings-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 1.5rem; }
-      .nav-links { display: none; }
-    }
-  </style>
+        /* CODE */
+        code { font-family: 'JetBrains Mono', monospace; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: .8rem }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); color: var(--text3); font-size: .78rem }
+        footer a { color: var(--accent); text-decoration: none }
+        footer a:hover { text-decoration: underline }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 5px; height: 5px }
+        ::-webkit-scrollbar-track { background: var(--bg) }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px }
+
+        @media(max-width:768px) {
+            .topbar nav a.hide-sm { display: none }
+            .card-grid { grid-template-columns: 1fr }
+            .arch-flow { flex-direction: column }
+            .bar-label { width: 110px; font-size: .75rem }
+        }
+    </style>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="i-brain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+            <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+            <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" />
+        </symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" />
+        </symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+            <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+            <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+        </symbol>
+        <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
+        </symbol>
+        <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+        </symbol>
+        <symbol id="i-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z" />
+        </symbol>
+        <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+        </symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+        </symbol>
+        <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" />
+        </symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </symbol>
+        <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+        </symbol>
+    </svg>
 </head>
+
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-brand">🧠 Cognitive Assessment Benchmark</div>
-    <div class="nav-links">
-      <a href="#results">Results</a>
-      <a href="#batteries">Batteries</a>
-      <a href="#findings">Findings</a>
-      <a href="#links">Links</a>
-      <a href="#references">References</a>
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="logo" href="#">
+                <svg class="ic-lg"><use href="#i-brain" /></svg> Cognitive Benchmark Docs
+            </a>
+            <nav>
+                <a href="#results">Results</a>
+                <a href="#benchmarks" class="hide-sm">Benchmarks</a>
+                <a href="#findings" class="hide-sm">Findings</a>
+                <a href="#links">Links</a>
+                <a href="#references" class="hide-sm">Refs</a>
+                <button class="theme-btn" id="themeToggle" title="Toggle theme">
+                    <svg class="icon-sun"><use href="#i-sun" /></svg>
+                    <svg class="icon-moon" style="display:none"><use href="#i-moon" /></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>The Cognitive Assessment Benchmark</h1>
+        <p class="sub">Probing Metacognition, Executive Control, Social Cognition, Attention, and Learning in frontier LLMs using 30 validated paradigms from cognitive psychology (1868–2010).</p>
+        <div class="badge-row">
+            <span class="badge"><span class="dot" style="background:var(--success)"></span> 5 Benchmarks</span>
+            <span class="badge"><span class="dot" style="background:var(--info)"></span> 30 Paradigms</span>
+            <span class="badge"><span class="dot" style="background:var(--warn)"></span> 150 Trials</span>
+            <span class="badge"><span class="dot" style="background:var(--accent)"></span> 39 Schemas</span>
+        </div>
+        <div class="badge-row" style="margin-top:10px">
+            <a href="https://github.com/alawalmuazu/Cognitive-Abilities-Kaggle-DeepMinds" target="_blank" class="badge" style="cursor:pointer"><svg class="ic" style="width:14px;height:14px"><use href="#i-code" /></svg> GitHub Repository</a>
+            <a href="https://www.kaggle.com/competitions/kaggle-measuring-agi" target="_blank" class="badge" style="cursor:pointer"><svg class="ic" style="width:14px;height:14px"><use href="#i-globe" /></svg> Kaggle Competition</a>
+        </div>
+        <div style="margin-top:18px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px;font-size:.82rem;color:var(--text2)">
+            <span style="display:flex;align-items:center;gap:6px"><svg class="ic" style="width:14px;height:14px"><use href="#i-brain" /></svg> <strong style="color:var(--text)">Ali Lawal Muazu</strong></span>
+            <span style="display:flex;align-items:center;gap:6px"><svg class="ic" style="width:14px;height:14px"><use href="#i-sparkle" /></svg> <strong style="color:var(--text)">Google DeepMind</strong> <span style="font-size:.7rem;padding:2px 8px;border-radius:4px;background:var(--accent-light);color:var(--accent);font-weight:600">Measuring AGI Hackathon</span></span>
+        </div>
+    </section>
+
+    <div class="container" style="padding-top:40px">
+
+        <!-- COGNITIVE PROFILE -->
+        <section id="results">
+            <span class="section-label"><svg class="ic"><use href="#i-chart" /></svg> Results</span>
+            <h2>Cognitive Profile</h2>
+            <p class="desc">Gemini 2.5 Flash evaluated across all 5 cognitive faculties. Combined runtime: ~24 minutes across 150 trials.</p>
+
+            <div class="arch-box">
+                <div class="bar-group">
+                    <div class="bar-row"><span class="bar-label">Attention</span><div class="bar-track"><div class="bar-fill teal" style="width:95.3%">0.953</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Social Cognition</span><div class="bar-track"><div class="bar-fill blue" style="width:94.8%">0.948</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Learning</span><div class="bar-track"><div class="bar-fill amber" style="width:91.6%">0.916</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Executive Functions</span><div class="bar-track"><div class="bar-fill green" style="width:82.8%">0.828</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Metacognition</span><div class="bar-track"><div class="bar-fill red" style="width:76.8%">0.768</div></div></div>
+                </div>
+                <div class="alert info" style="margin-top:18px"><svg><use href="#i-info" /></svg><span><strong>Key insight:</strong> The model's strongest faculties are <strong>outward-facing</strong> (attention, social perception); its weakest are <strong>self-directed</strong> (metacognition, executive control). It can detect errors in others but cannot regulate its own behavior.</span></div>
+            </div>
+        </section>
+
+        <!-- BENCHMARKS -->
+        <section id="benchmarks">
+            <span class="section-label"><svg class="ic"><use href="#i-layers" /></svg> Deep Dive</span>
+            <h2>The Five Benchmarks</h2>
+            <p class="desc">Each benchmark adapts 6 published paradigms from cognitive psychology for LLM evaluation.</p>
+
+            <details class="accordion" open>
+                <summary><svg><use href="#i-brain" /></svg> Benchmark 1: The Dunning-Kruger Probe — Metacognition (0.768)</summary>
+                <div class="inner">
+                    <p>Does the model know what it knows? Tests confidence calibration, explanatory depth, epistemic vigilance, resilience under social pressure, and deference to expertise.</p>
+                    <table class="doc-table">
+                        <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
+                        <tr><td>Feeling of Knowing</td><td>FOK judgment accuracy</td><td>Hart, 1965</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Illusion of Explanatory Depth</td><td>Pre/post confidence shift</td><td>Rozenblit & Keil, 2002</td><td class="s-mid">0.62</td></tr>
+                        <tr><td>Dunning-Kruger Calibration</td><td>Easy vs hard calibration</td><td>Kruger & Dunning, 1999</td><td class="s-mid">0.68</td></tr>
+                        <tr><td>Epistemic Vigilance</td><td>Fabricated citation detection</td><td>Sperber et al., 2010</td><td class="s-high">0.92</td></tr>
+                        <tr><td>Socratic Stress Test</td><td>Persuasion resistance</td><td>Novel (Asch, 1951)</td><td class="s-high">0.96</td></tr>
+                        <tr><td>High-Stakes Deference</td><td>Expert deference</td><td>Lichtenstein et al., 1982</td><td class="s-low">0.40</td></tr>
+                    </table>
+                    <div class="alert warn"><svg><use href="#i-info" /></svg><span><strong>RLHF Paradox:</strong> 0.96 resilience but only 0.40 deference. The model won't abandon correct beliefs, but also won't admit when it should defer to experts.</span></div>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary><svg><use href="#i-zap" /></svg> Benchmark 2: Cognitive Control — Executive Functions (0.828)</summary>
+                <div class="inner">
+                    <p>Can the model control its own cognition? Tests inhibitory control, cognitive flexibility, planning depth, response inhibition, working memory, and switch cost.</p>
+                    <table class="doc-table">
+                        <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
+                        <tr><td>Stroop Interference</td><td>Inhibitory control</td><td>Stroop, 1935</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Wisconsin Card Sort</td><td>Rule-change adaptation</td><td>Grant & Berg, 1948</td><td class="s-mid">0.68</td></tr>
+                        <tr><td>Tower of London</td><td>Multi-step planning</td><td>Shallice, 1982</td><td class="s-low">0.48</td></tr>
+                        <tr><td>Go / No-Go</td><td>Response inhibition</td><td>Donders, 1868</td><td class="s-high">0.98</td></tr>
+                        <tr><td>Dual N-Back</td><td>Working memory updating</td><td>Kirchner, 1958</td><td class="s-high">0.86</td></tr>
+                        <tr><td>Task Switching</td><td>Switch cost measurement</td><td>Rogers & Monsell, 1995</td><td class="s-high">0.96</td></tr>
+                    </table>
+                    <div class="alert warn"><svg><use href="#i-info" /></svg><span><strong>Planning Deficit:</strong> Tower of London (0.48) is the lowest module across all 30 — models struggle with multi-step look-ahead requiring temporary regression.</span></div>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary><svg><use href="#i-sparkle" /></svg> Benchmark 3: SocialMind — Social Cognition (0.948)</summary>
+                <div class="inner">
+                    <p>Can the model understand other minds? Tests Theory of Mind, perspective-taking, social norms, deception detection, empathic accuracy, and game-theoretic reasoning.</p>
+                    <table class="doc-table">
+                        <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
+                        <tr><td>False Belief / ToM</td><td>Sally-Anne type tasks</td><td>Baron-Cohen et al., 1985</td><td class="s-high">0.98</td></tr>
+                        <tr><td>Perspective-Taking</td><td>Spatial / knowledge asymmetry</td><td>Piaget, 1956</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Social Norm Understanding</td><td>Descriptive vs injunctive norms</td><td>Bicchieri, 2006</td><td class="s-high">0.88</td></tr>
+                        <tr><td>Deception Detection</td><td>Manipulation identification</td><td>Ekman, 1985</td><td class="s-high">0.96</td></tr>
+                        <tr><td>Empathic Accuracy</td><td>Masked emotion inference</td><td>Ickes, 1993</td><td class="s-high">0.92</td></tr>
+                        <tr><td>Social Dilemma Reasoning</td><td>Prisoner's dilemma variants</td><td>Axelrod, 1984</td><td class="s-high">0.92</td></tr>
+                    </table>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary><svg><use href="#i-target" /></svg> Benchmark 4: FocusProbe — Attention (0.953)</summary>
+                <div class="inner">
+                    <p>Can the model filter, sustain, and divide focus? Tests selective attention, vigilance, change detection, distraction resistance, dual-task performance, and set-shifting.</p>
+                    <table class="doc-table">
+                        <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
+                        <tr><td>Selective Attention</td><td>Channel filtering</td><td>Cherry, 1953</td><td class="s-high">0.88</td></tr>
+                        <tr><td>Sustained Attention</td><td>Vigilance over long passages</td><td>Mackworth, 1948</td><td class="s-high">0.96</td></tr>
+                        <tr><td>Change Blindness</td><td>Subtle modification detection</td><td>Simons & Chabris, 1999</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Distraction Resistance</td><td>Prompt injection immunity</td><td>Theeuwes, 1992</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Divided Attention</td><td>Dual-task performance</td><td>Pashler, 1994</td><td class="s-high">0.98</td></tr>
+                        <tr><td>Set-Shifting</td><td>Rule-change detection</td><td>Owen et al., 1991</td><td class="s-high">0.92</td></tr>
+                    </table>
+                    <div class="alert success"><svg><use href="#i-info" /></svg><span><strong>Perfect Immunity:</strong> Distraction Resistance scored 1.00 — complete immunity to injected false corrections, fake system alerts, and redirect attempts.</span></div>
+                </div>
+            </details>
+
+            <details class="accordion">
+                <summary><svg><use href="#i-book" /></svg> Benchmark 5: AdaptIQ — Learning (0.916)</summary>
+                <div class="inner">
+                    <p>Can the model learn new rules within a single context window? Tests rule induction, feedback-based learning, statistical regularities, analogical transfer, and curriculum sensitivity.</p>
+                    <table class="doc-table">
+                        <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
+                        <tr><td>Rule Induction</td><td>Few-shot rule discovery</td><td>Bruner, 1956</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Feedback Learning</td><td>Correct/incorrect adaptation</td><td>Skinner, 1938</td><td class="s-mid">0.76</td></tr>
+                        <tr><td>Statistical Learning</td><td>Distributional regularities</td><td>Saffran et al., 1996</td><td class="s-high">0.90</td></tr>
+                        <tr><td>Transfer Learning</td><td>Cross-domain analogy</td><td>Gick & Holyoak, 1983</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Learning Curves</td><td>Predicting learning dynamics</td><td>Ebbinghaus, 1885</td><td class="s-high">0.86</td></tr>
+                        <tr><td>Curriculum Sensitivity</td><td>Example ordering effects</td><td>Vygotsky, 1978</td><td class="s-perfect">1.00</td></tr>
+                    </table>
+                    <div class="alert info"><svg><use href="#i-info" /></svg><span><strong>Transfer Superpower:</strong> Perfect 1.00 across five domain pairs, exceeding typical human performance on Duncker's radiation problem (~30% solve without hints).</span></div>
+                </div>
+            </details>
+        </section>
+
+        <!-- ARCHITECTURE -->
+        <section>
+            <span class="section-label"><svg class="ic"><use href="#i-layers" /></svg> System Design</span>
+            <h2>Benchmark Architecture</h2>
+            <p class="desc">Each benchmark follows the same evaluation pipeline using the Kaggle Benchmarks SDK.</p>
+            <div class="arch-box">
+                <div class="arch-flow">
+                    <span class="arch-node">Trial Data<small>pd.DataFrame</small></span>
+                    <span class="arch-arrow"><svg class="ic"><use href="#i-arrow" /></svg></span>
+                    <span class="arch-node primary">LLM Prompt<small>llm.prompt(schema=)</small></span>
+                    <span class="arch-arrow"><svg class="ic"><use href="#i-arrow" /></svg></span>
+                    <span class="arch-node">Pydantic Schema<small>Structured output</small></span>
+                    <span class="arch-arrow"><svg class="ic"><use href="#i-arrow" /></svg></span>
+                    <span class="arch-node primary">Judge LLM<small>RCCO prompt</small></span>
+                    <span class="arch-arrow"><svg class="ic"><use href="#i-arrow" /></svg></span>
+                    <span class="arch-node">Score 0–10<small>Normalized to 0.0–1.0</small></span>
+                </div>
+                <div class="arch-flow">
+                    <span class="arch-node">kbench.chats.new()<small>Conversation isolation</small></span>
+                    <span class="arch-arrow"><svg class="ic"><use href="#i-arrow" /></svg></span>
+                    <span class="arch-node">task.evaluate()<small>Batch execution</small></span>
+                    <span class="arch-arrow"><svg class="ic"><use href="#i-arrow" /></svg></span>
+                    <span class="arch-node primary">Composite Score<small>Weighted average</small></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY FINDINGS -->
+        <section id="findings">
+            <span class="section-label"><svg class="ic"><use href="#i-sparkle" /></svg> Insights</span>
+            <h2>Key Findings</h2>
+            <p class="desc">Insights that emerge from evaluating across all 5 cognitive faculties simultaneously.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-zap" /></svg></div>
+                    <h3>The RLHF Paradox</h3>
+                    <p>0.96 resilience but 0.40 deference. RLHF creates models that are confidently assertive regardless of whether humility is appropriate. <strong>Δ = 0.56</strong></p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-target" /></svg></div>
+                    <h3>Monitoring vs Control</h3>
+                    <p>Models excel at detecting errors in others (avg: 0.96) but fail at regulating their own behavior (avg: 0.44). They see the problem but can't stop themselves.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-sparkle" /></svg></div>
+                    <h3>Transfer Superpower</h3>
+                    <p>Perfect 1.00 across 5 domain pairs — exceeding typical human performance (~30% solve without hints). LLMs may be the first reliable analogical transfer system.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-info" /></svg></div>
+                    <h3>Right-Answer-Wrong-Reason</h3>
+                    <p>Feedback learning (0.76) reveals correct outputs with incorrect rule discovery. Pattern-matching without causal understanding — a fundamental limitation.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-layers" /></svg></div>
+                    <h3>Prompt Injection Immunity</h3>
+                    <p>Distraction Resistance scored 1.00 — complete immunity to injected false corrections, fake system alerts, and redirect attempts. 5/5 blocked.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-brain" /></svg></div>
+                    <h3>Clinical Pattern Match</h3>
+                    <p>The cognitive profile (strong attention/social, weak planning, absent deference) mirrors specific human neurocognitive profiles — an emergent analog.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FILE STRUCTURE -->
+        <section>
+            <span class="section-label"><svg class="ic"><use href="#i-folder" /></svg> Project Layout</span>
+            <h2>Repository Structure</h2>
+            <div class="file-tree">
+                <span class="dir">Cognitive-Abilities-Kaggle-DeepMinds/</span><br>
+                ├── <span class="file">Cognitive_Assessment_Benchmark.py</span> <span class="cmt"># Unified benchmark (3,637 lines)</span><br>
+                ├── <span class="file">unified_benchmark.py</span> <span class="cmt"># Unified benchmark with writeup cells</span><br>
+                ├── <span class="file">metacognition_benchmark.py</span> <span class="cmt"># Benchmark 1: Dunning-Kruger Probe</span><br>
+                ├── <span class="file">executive_functions_benchmark.py</span> <span class="cmt"># Benchmark 2: Cognitive Control</span><br>
+                ├── <span class="file">social_cognition_benchmark.py</span> <span class="cmt"># Benchmark 3: SocialMind</span><br>
+                ├── <span class="file">attention_benchmark.py</span> <span class="cmt"># Benchmark 4: FocusProbe</span><br>
+                ├── <span class="file">learning_benchmark.py</span> <span class="cmt"># Benchmark 5: AdaptIQ</span><br>
+                ├── <span class="file">README.md</span> <span class="cmt"># Project overview + results summary</span><br>
+                ├── <span class="file">kaggle_writeup_final.md</span> <span class="cmt"># Condensed Kaggle writeup (1,003 words)</span><br>
+                ├── <span class="file">unified_writeup.md</span> <span class="cmt"># Full writeup (all 5 benchmarks)</span><br>
+                ├── <span class="file">docs.html</span> <span class="cmt"># This documentation page</span><br>
+                ├── <span class="dir">media/</span> <span class="cmt"># Visualizations and charts</span><br>
+                └── <span class="file">*_writeup.md</span> <span class="cmt"># Individual benchmark writeups × 5</span>
+            </div>
+        </section>
+
+        <!-- LINKS -->
+        <section id="links">
+            <span class="section-label"><svg class="ic"><use href="#i-globe" /></svg> External</span>
+            <h2>Kaggle Notebooks</h2>
+            <p class="desc">Each benchmark runs as an independent Kaggle notebook with full execution output.</p>
+            <table class="doc-table">
+                <tr><th>Benchmark</th><th>Name</th><th>Composite</th><th>Link</th></tr>
+                <tr><td>1. Metacognition</td><td>The Dunning-Kruger Probe</td><td class="s-mid">0.768</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/metacognition-agi-do-models-know-what-they-don-t" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>2. Executive Functions</td><td>Cognitive Control</td><td class="s-high">0.828</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/executive-functions-benchmark-cognitive-control" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>3. Social Cognition</td><td>SocialMind</td><td class="s-high">0.948</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/social-cognition-benchmark-socialmind" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>4. Attention</td><td>FocusProbe</td><td class="s-high">0.953</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/attention-benchmark-focusprobe" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>5. Learning</td><td>AdaptIQ</td><td class="s-high">0.916</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/learning-track-benchmark-adaptiq" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+            </table>
+        </section>
+
+        <!-- REFERENCES -->
+        <section id="references">
+            <span class="section-label"><svg class="ic"><use href="#i-book" /></svg> Academic</span>
+            <h2>References & Citations</h2>
+            <p class="desc">30 paradigms drawn from 142 years of cognitive psychology research.</p>
+            <table class="doc-table">
+                <tr><th>Author</th><th>Year</th><th>Paradigm / Work</th></tr>
+                <tr><td>Hart, J.T.</td><td>1965</td><td>Memory and the feeling-of-knowing experience</td></tr>
+                <tr><td>Rozenblit, L. & Keil, F.</td><td>2002</td><td>The misunderstood limits of folk science</td></tr>
+                <tr><td>Kruger, J. & Dunning, D.</td><td>1999</td><td>Unskilled and unaware of it</td></tr>
+                <tr><td>Sperber, D. et al.</td><td>2010</td><td>Epistemic vigilance</td></tr>
+                <tr><td>Asch, S.</td><td>1951</td><td>Effects of group pressure upon modification of judgments</td></tr>
+                <tr><td>Lichtenstein, S. et al.</td><td>1982</td><td>Calibration of probabilities</td></tr>
+                <tr><td>Stroop, J.R.</td><td>1935</td><td>Studies of interference in serial verbal reactions</td></tr>
+                <tr><td>Grant, D.A. & Berg, E.</td><td>1948</td><td>Wisconsin Card Sorting Test</td></tr>
+                <tr><td>Shallice, T.</td><td>1982</td><td>Specific impairments of planning</td></tr>
+                <tr><td>Donders, F.C.</td><td>1868</td><td>On the speed of mental processes</td></tr>
+                <tr><td>Kirchner, W.K.</td><td>1958</td><td>Age differences in short-term retention</td></tr>
+                <tr><td>Rogers, R.D. & Monsell, S.</td><td>1995</td><td>Costs of a predictable switch</td></tr>
+                <tr><td>Baron-Cohen, S. et al.</td><td>1985</td><td>Does the autistic child have a theory of mind?</td></tr>
+                <tr><td>Piaget, J.</td><td>1956</td><td>The Child's Conception of Space</td></tr>
+                <tr><td>Bicchieri, C.</td><td>2006</td><td>The Grammar of Society</td></tr>
+                <tr><td>Ekman, P.</td><td>1985</td><td>Telling Lies</td></tr>
+                <tr><td>Ickes, W.</td><td>1993</td><td>Empathic accuracy</td></tr>
+                <tr><td>Axelrod, R.</td><td>1984</td><td>The Evolution of Cooperation</td></tr>
+                <tr><td>Cherry, E.C.</td><td>1953</td><td>Some experiments on the recognition of speech</td></tr>
+                <tr><td>Mackworth, N.H.</td><td>1948</td><td>The breakdown of vigilance</td></tr>
+                <tr><td>Simons, D. & Chabris, C.</td><td>1999</td><td>Gorillas in Our Midst</td></tr>
+                <tr><td>Theeuwes, J.</td><td>1992</td><td>Perceptual selectivity for color and form</td></tr>
+                <tr><td>Pashler, H.</td><td>1994</td><td>Dual-task interference in simple tasks</td></tr>
+                <tr><td>Owen, A.M. et al.</td><td>1991</td><td>Extra-dimensional vs intra-dimensional set shifting</td></tr>
+                <tr><td>Bruner, J.S.</td><td>1956</td><td>A Study of Thinking</td></tr>
+                <tr><td>Skinner, B.F.</td><td>1938</td><td>The Behavior of Organisms</td></tr>
+                <tr><td>Saffran, J.R. et al.</td><td>1996</td><td>Statistical learning by 8-month-old infants</td></tr>
+                <tr><td>Gick, M.L. & Holyoak, K.J.</td><td>1983</td><td>Schema induction and analogical transfer</td></tr>
+                <tr><td>Ebbinghaus, H.</td><td>1885</td><td>Über das Gedächtnis</td></tr>
+                <tr><td>Vygotsky, L.S.</td><td>1978</td><td>Mind in Society</td></tr>
+            </table>
+            <div class="alert info" style="margin-top:16px"><svg><use href="#i-info" /></svg><span><strong>Competition Citation:</strong> Martyna Plomecka, Yao Yan, Nicholas Kang, Ryan Burnell, María Cruz, and Sara Wolley. <em>Measuring Progress Toward AGI — Cognitive Abilities.</em> Kaggle, 2026.</span></div>
+        </section>
+
     </div>
-  </div>
-</nav>
 
-<!-- ════════ HERO ════════ -->
-<header class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Google DeepMind · Measuring Progress Toward AGI</div>
-    <h1>The <span class="gradient">Cognitive Assessment</span> Benchmark</h1>
-    <p>Probing Metacognition, Executive Control, Social Cognition, Attention, and Learning in frontier LLMs using 30 validated paradigms from cognitive psychology.</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="num">5</div><div class="label">Batteries</div></div>
-      <div class="hero-stat"><div class="num">30</div><div class="label">Paradigms</div></div>
-      <div class="hero-stat"><div class="num">150</div><div class="label">Trials</div></div>
-      <div class="hero-stat"><div class="num">39</div><div class="label">Schemas</div></div>
-      <div class="hero-stat"><div class="num">1868–2010</div><div class="label">Year Span</div></div>
-    </div>
-  </div>
-</header>
+    <footer>
+        <p>The Cognitive Assessment Benchmark · <a href="https://github.com/alawalmuazu">Ali Lawal Muazu</a> · Independent Researcher · March 2026</p>
+        <p style="margin-top:8px"><a href="https://github.com/alawalmuazu/Cognitive-Abilities-Kaggle-DeepMinds">GitHub</a> · <a href="https://www.kaggle.com/competitions/kaggle-measuring-agi">Kaggle Competition</a></p>
+    </footer>
 
-<!-- ════════ COGNITIVE PROFILE ════════ -->
-<section id="results">
-  <div class="section-header">
-    <h2>Cognitive Profile</h2>
-    <p>Gemini 2.5 Flash evaluated across all 5 faculties. Combined runtime: ~24 minutes.</p>
-  </div>
-
-  <div class="profile-section">
-    <div class="profile-title">Composite Scores by Faculty</div>
-    <div class="profile-subtitle">Each bar represents the weighted composite score (0.0–1.0) for one cognitive battery.</div>
-    <div class="profile-bar-group">
-      <div class="profile-bar bar-attention">
-        <div class="label">Attention</div>
-        <div class="bar-track"><div class="bar-fill" style="width: 95.3%">0.953</div></div>
-      </div>
-      <div class="profile-bar bar-social">
-        <div class="label">Social Cognition</div>
-        <div class="bar-track"><div class="bar-fill" style="width: 94.8%">0.948</div></div>
-      </div>
-      <div class="profile-bar bar-learning">
-        <div class="label">Learning</div>
-        <div class="bar-track"><div class="bar-fill" style="width: 91.6%">0.916</div></div>
-      </div>
-      <div class="profile-bar bar-executive">
-        <div class="label">Executive Functions</div>
-        <div class="bar-track"><div class="bar-fill" style="width: 82.8%">0.828</div></div>
-      </div>
-      <div class="profile-bar bar-metacognition">
-        <div class="label">Metacognition</div>
-        <div class="bar-track"><div class="bar-fill" style="width: 76.8%">0.768</div></div>
-      </div>
-    </div>
-    <div class="profile-insight">
-      <strong>Key insight:</strong> The model's strongest faculties are <strong>outward-facing</strong> (attention, social perception); its weakest are <strong>self-directed</strong> (metacognition, executive control). It can detect errors in others but cannot regulate its own behavior.
-    </div>
-  </div>
-</section>
-
-<!-- ════════ BATTERIES ════════ -->
-<section id="batteries">
-  <div class="section-header">
-    <h2>The Five Batteries</h2>
-    <p>Each battery adapts 6 published paradigms from cognitive psychology for LLM evaluation.</p>
-  </div>
-
-  <div class="batteries-grid">
-
-    <!-- Battery 1 -->
-    <div class="battery-card">
-      <div class="battery-header">
-        <div class="battery-num">Battery 1</div>
-        <div class="battery-score-badge">0.768</div>
-      </div>
-      <div class="battery-name">The Dunning-Kruger Probe</div>
-      <div class="battery-subtitle">Metacognition</div>
-      <div class="battery-modules">
-        <div class="module-row"><span class="module-name">Feeling of Knowing <span class="module-cite">Hart, 1965</span></span><span class="module-score score-perfect">1.00</span></div>
-        <div class="module-row"><span class="module-name">Illusion of Depth <span class="module-cite">Rozenblit & Keil, 2002</span></span><span class="module-score score-mid">0.62</span></div>
-        <div class="module-row"><span class="module-name">DK Calibration <span class="module-cite">Kruger & Dunning, 1999</span></span><span class="module-score score-mid">0.68</span></div>
-        <div class="module-row"><span class="module-name">Epistemic Vigilance <span class="module-cite">Sperber et al., 2010</span></span><span class="module-score score-high">0.92</span></div>
-        <div class="module-row"><span class="module-name">Socratic Stress <span class="module-cite">Novel (Asch, 1951)</span></span><span class="module-score score-high">0.96</span></div>
-        <div class="module-row"><span class="module-name">High-Stakes Deference <span class="module-cite">Lichtenstein, 1982</span></span><span class="module-score score-low">0.40</span></div>
-      </div>
-    </div>
-
-    <!-- Battery 2 -->
-    <div class="battery-card">
-      <div class="battery-header">
-        <div class="battery-num">Battery 2</div>
-        <div class="battery-score-badge">0.828</div>
-      </div>
-      <div class="battery-name">Cognitive Control</div>
-      <div class="battery-subtitle">Executive Functions</div>
-      <div class="battery-modules">
-        <div class="module-row"><span class="module-name">Stroop Interference <span class="module-cite">Stroop, 1935</span></span><span class="module-score score-perfect">1.00</span></div>
-        <div class="module-row"><span class="module-name">Wisconsin Card Sort <span class="module-cite">Grant & Berg, 1948</span></span><span class="module-score score-mid">0.68</span></div>
-        <div class="module-row"><span class="module-name">Tower of London <span class="module-cite">Shallice, 1982</span></span><span class="module-score score-low">0.48</span></div>
-        <div class="module-row"><span class="module-name">Go / No-Go <span class="module-cite">Donders, 1868</span></span><span class="module-score score-high">0.98</span></div>
-        <div class="module-row"><span class="module-name">Dual N-Back <span class="module-cite">Kirchner, 1958</span></span><span class="module-score score-high">0.86</span></div>
-        <div class="module-row"><span class="module-name">Task Switching <span class="module-cite">Rogers & Monsell, 1995</span></span><span class="module-score score-high">0.96</span></div>
-      </div>
-    </div>
-
-    <!-- Battery 3 -->
-    <div class="battery-card">
-      <div class="battery-header">
-        <div class="battery-num">Battery 3</div>
-        <div class="battery-score-badge">0.948</div>
-      </div>
-      <div class="battery-name">SocialMind</div>
-      <div class="battery-subtitle">Social Cognition</div>
-      <div class="battery-modules">
-        <div class="module-row"><span class="module-name">False Belief / ToM <span class="module-cite">Baron-Cohen, 1985</span></span><span class="module-score score-high">0.98</span></div>
-        <div class="module-row"><span class="module-name">Perspective-Taking <span class="module-cite">Piaget, 1956</span></span><span class="module-score score-perfect">1.00</span></div>
-        <div class="module-row"><span class="module-name">Social Norms <span class="module-cite">Bicchieri, 2006</span></span><span class="module-score score-high">0.88</span></div>
-        <div class="module-row"><span class="module-name">Deception Detection <span class="module-cite">Ekman, 1985</span></span><span class="module-score score-high">0.96</span></div>
-        <div class="module-row"><span class="module-name">Empathic Accuracy <span class="module-cite">Ickes, 1993</span></span><span class="module-score score-high">0.92</span></div>
-        <div class="module-row"><span class="module-name">Social Dilemma <span class="module-cite">Axelrod, 1984</span></span><span class="module-score score-high">0.92</span></div>
-      </div>
-    </div>
-
-    <!-- Battery 4 -->
-    <div class="battery-card">
-      <div class="battery-header">
-        <div class="battery-num">Battery 4</div>
-        <div class="battery-score-badge">0.953</div>
-      </div>
-      <div class="battery-name">FocusProbe</div>
-      <div class="battery-subtitle">Attention</div>
-      <div class="battery-modules">
-        <div class="module-row"><span class="module-name">Selective Attention <span class="module-cite">Cherry, 1953</span></span><span class="module-score score-high">0.88</span></div>
-        <div class="module-row"><span class="module-name">Sustained Attention <span class="module-cite">Mackworth, 1948</span></span><span class="module-score score-high">0.96</span></div>
-        <div class="module-row"><span class="module-name">Change Blindness <span class="module-cite">Simons & Chabris, 1999</span></span><span class="module-score score-perfect">1.00</span></div>
-        <div class="module-row"><span class="module-name">Distraction Resistance <span class="module-cite">Theeuwes, 1992</span></span><span class="module-score score-perfect">1.00</span></div>
-        <div class="module-row"><span class="module-name">Divided Attention <span class="module-cite">Pashler, 1994</span></span><span class="module-score score-high">0.98</span></div>
-        <div class="module-row"><span class="module-name">Set-Shifting <span class="module-cite">Owen et al., 1991</span></span><span class="module-score score-high">0.92</span></div>
-      </div>
-    </div>
-
-    <!-- Battery 5 -->
-    <div class="battery-card">
-      <div class="battery-header">
-        <div class="battery-num">Battery 5</div>
-        <div class="battery-score-badge">0.916</div>
-      </div>
-      <div class="battery-name">AdaptIQ</div>
-      <div class="battery-subtitle">Learning</div>
-      <div class="battery-modules">
-        <div class="module-row"><span class="module-name">Rule Induction <span class="module-cite">Bruner, 1956</span></span><span class="module-score score-perfect">1.00</span></div>
-        <div class="module-row"><span class="module-name">Feedback Learning <span class="module-cite">Skinner, 1938</span></span><span class="module-score score-mid">0.76</span></div>
-        <div class="module-row"><span class="module-name">Statistical Learning <span class="module-cite">Saffran et al., 1996</span></span><span class="module-score score-high">0.90</span></div>
-        <div class="module-row"><span class="module-name">Transfer Learning <span class="module-cite">Gick & Holyoak, 1983</span></span><span class="module-score score-perfect">1.00</span></div>
-        <div class="module-row"><span class="module-name">Learning Curves <span class="module-cite">Ebbinghaus, 1885</span></span><span class="module-score score-high">0.86</span></div>
-        <div class="module-row"><span class="module-name">Curriculum Sensitivity <span class="module-cite">Vygotsky, 1978</span></span><span class="module-score score-perfect">1.00</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════ KEY FINDINGS ════════ -->
-<section id="findings">
-  <div class="section-header">
-    <h2>Key Findings</h2>
-    <p>Insights that emerge from evaluating across all 5 cognitive faculties simultaneously.</p>
-  </div>
-
-  <div class="findings-grid">
-
-    <div class="finding-card">
-      <div class="finding-num">Finding 01</div>
-      <div class="finding-title">The RLHF Paradox</div>
-      <div class="finding-body">Models score 0.96 on resilience (won't abandon correct beliefs) but only 0.40 on deference (won't admit they should defer). RLHF creates models that are confidently assertive regardless of whether humility is appropriate.</div>
-      <div class="finding-evidence">Resilience: 0.96 · Deference: 0.40 · Δ = 0.56</div>
-    </div>
-
-    <div class="finding-card">
-      <div class="finding-num">Finding 02</div>
-      <div class="finding-title">Monitoring vs Control Dissociation</div>
-      <div class="finding-body">Models excel at detecting errors in others (Vigilance: 0.92, Stroop: 1.00, Deception: 0.96) but fail at regulating their own behavior (Deference: 0.40, Planning: 0.48). They can see the problem but cannot stop themselves.</div>
-      <div class="finding-evidence">Monitoring avg: 0.96 · Control avg: 0.44</div>
-    </div>
-
-    <div class="finding-card">
-      <div class="finding-num">Finding 03</div>
-      <div class="finding-title">Transfer Learning Superpower</div>
-      <div class="finding-body">Perfect 1.00 across five domain pairs — exceeding typical human performance on Duncker's radiation problem (~30% solve without hints). LLMs may represent the first cognitive system that transfers analogies reliably.</div>
-      <div class="finding-evidence">5/5 domain pairs: 1.00 · Human baseline: ~0.30</div>
-    </div>
-
-    <div class="finding-card">
-      <div class="finding-num">Finding 04</div>
-      <div class="finding-title">Right-Answer-Wrong-Reason</div>
-      <div class="finding-body">Feedback learning (0.76) reveals correct outputs paired with incorrect rule discovery. Models pattern-match to the right answer without understanding the underlying causal mechanism — a fundamental limitation.</div>
-      <div class="finding-evidence">Correct output: ✓ · Correct rule: ✗</div>
-    </div>
-
-    <div class="finding-card">
-      <div class="finding-num">Finding 05</div>
-      <div class="finding-title">Perfect Prompt Injection Resistance</div>
-      <div class="finding-body">Distraction Resistance scored 1.00 — complete immunity to injected false corrections, fake system alerts, and redirect attempts. Transformers process all tokens simultaneously, eliminating sequential attention bottlenecks.</div>
-      <div class="finding-evidence">Injections blocked: 5/5 · Score: 1.00</div>
-    </div>
-
-    <div class="finding-card">
-      <div class="finding-num">Finding 06</div>
-      <div class="finding-title">Clinical Pattern Match</div>
-      <div class="finding-body">The cognitive profile (strong attention and social perception, weak planning, absent deference) mirrors specific human neurocognitive profiles — suggesting LLMs may develop analogous cognitive architectures through training.</div>
-      <div class="finding-evidence">Profile: Attn > Social > Learn > Exec > Meta</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════ TECH STACK ════════ -->
-<section>
-  <div class="section-header">
-    <h2>Technical Details</h2>
-    <p>Built on the Kaggle Benchmarks SDK with structured evaluation and isolated conversations.</p>
-  </div>
-  <div class="tech-grid">
-    <div class="tech-item"><div class="value" style="color: var(--accent-blue)">39</div><div class="label">Pydantic Schemas</div></div>
-    <div class="tech-item"><div class="value" style="color: var(--accent-purple)">30</div><div class="label">RCCO Judge Prompts</div></div>
-    <div class="tech-item"><div class="value" style="color: var(--accent-green)">150</div><div class="label">Hand-Crafted Trials</div></div>
-    <div class="tech-item"><div class="value" style="color: var(--accent-amber)">~24 min</div><div class="label">Total Runtime</div></div>
-    <div class="tech-item"><div class="value" style="color: var(--accent-cyan)">Gemini 2.5</div><div class="label">Model Tested</div></div>
-    <div class="tech-item"><div class="value" style="color: var(--accent-rose)">3.1 Lite</div><div class="label">Judge LLM</div></div>
-  </div>
-</section>
-
-<!-- ════════ LINKS ════════ -->
-<section id="links">
-  <div class="section-header">
-    <h2>Kaggle Notebooks</h2>
-    <p>Each battery runs as an independent Kaggle notebook with full execution output.</p>
-  </div>
-  <div class="links-grid">
-    <a class="link-card" href="https://www.kaggle.com/code/alilawalmuazu/metacognition-agi-do-models-know-what-they-don-t" target="_blank">
-      <div class="link-icon kaggle">🧠</div>
-      <div class="link-text"><div class="link-title">The Dunning-Kruger Probe</div><div class="link-desc">Metacognition · Composite: 0.768</div></div>
-    </a>
-    <a class="link-card" href="https://www.kaggle.com/code/alilawalmuazu/executive-functions-benchmark-cognitive-control" target="_blank">
-      <div class="link-icon kaggle">⚡</div>
-      <div class="link-text"><div class="link-title">Cognitive Control Battery</div><div class="link-desc">Executive Functions · Composite: 0.828</div></div>
-    </a>
-    <a class="link-card" href="https://www.kaggle.com/code/alilawalmuazu/social-cognition-benchmark-socialmind" target="_blank">
-      <div class="link-icon kaggle">🤝</div>
-      <div class="link-text"><div class="link-title">SocialMind</div><div class="link-desc">Social Cognition · Composite: 0.948</div></div>
-    </a>
-    <a class="link-card" href="https://www.kaggle.com/code/alilawalmuazu/attention-benchmark-focusprobe" target="_blank">
-      <div class="link-icon kaggle">🎯</div>
-      <div class="link-text"><div class="link-title">FocusProbe</div><div class="link-desc">Attention · Composite: 0.953</div></div>
-    </a>
-    <a class="link-card" href="https://www.kaggle.com/code/alilawalmuazu/learning-track-benchmark-adaptiq" target="_blank">
-      <div class="link-icon kaggle">📚</div>
-      <div class="link-text"><div class="link-title">AdaptIQ</div><div class="link-desc">Learning · Composite: 0.916</div></div>
-    </a>
-    <a class="link-card" href="https://github.com/alawalmuazu/Cognitive-Abilities-Kaggle-DeepMinds" target="_blank">
-      <div class="link-icon github">📦</div>
-      <div class="link-text"><div class="link-title">GitHub Repository</div><div class="link-desc">Full source code · All 5 batteries</div></div>
-    </a>
-  </div>
-</section>
-
-<!-- ════════ REFERENCES ════════ -->
-<section id="references">
-  <div class="section-header">
-    <h2>References & Citations</h2>
-    <p>30 paradigms drawn from 142 years of cognitive psychology research.</p>
-  </div>
-  <div class="ref-grid">
-    <div class="ref-item"><strong>Hart, J.T.</strong> (1965). Memory and the feeling-of-knowing experience.</div>
-    <div class="ref-item"><strong>Rozenblit, L. & Keil, F.</strong> (2002). The misunderstood limits of folk science.</div>
-    <div class="ref-item"><strong>Kruger, J. & Dunning, D.</strong> (1999). Unskilled and unaware of it.</div>
-    <div class="ref-item"><strong>Sperber, D. et al.</strong> (2010). Epistemic vigilance.</div>
-    <div class="ref-item"><strong>Asch, S.</strong> (1951). Effects of group pressure upon modification of judgments.</div>
-    <div class="ref-item"><strong>Lichtenstein, S. et al.</strong> (1982). Calibration of probabilities.</div>
-    <div class="ref-item"><strong>Stroop, J.R.</strong> (1935). Studies of interference in serial verbal reactions.</div>
-    <div class="ref-item"><strong>Grant, D.A. & Berg, E.</strong> (1948). Wisconsin Card Sorting Test.</div>
-    <div class="ref-item"><strong>Shallice, T.</strong> (1982). Specific impairments of planning.</div>
-    <div class="ref-item"><strong>Donders, F.C.</strong> (1868). On the speed of mental processes.</div>
-    <div class="ref-item"><strong>Kirchner, W.K.</strong> (1958). Age differences in short-term retention.</div>
-    <div class="ref-item"><strong>Rogers, R.D. & Monsell, S.</strong> (1995). Costs of a predictable switch.</div>
-    <div class="ref-item"><strong>Baron-Cohen, S. et al.</strong> (1985). Does the autistic child have a theory of mind?</div>
-    <div class="ref-item"><strong>Piaget, J.</strong> (1956). The Child's Conception of Space.</div>
-    <div class="ref-item"><strong>Bicchieri, C.</strong> (2006). The Grammar of Society.</div>
-    <div class="ref-item"><strong>Ekman, P.</strong> (1985). Telling Lies.</div>
-    <div class="ref-item"><strong>Ickes, W.</strong> (1993). Empathic accuracy.</div>
-    <div class="ref-item"><strong>Axelrod, R.</strong> (1984). The Evolution of Cooperation.</div>
-    <div class="ref-item"><strong>Cherry, E.C.</strong> (1953). Some experiments on the recognition of speech.</div>
-    <div class="ref-item"><strong>Mackworth, N.H.</strong> (1948). The breakdown of vigilance.</div>
-    <div class="ref-item"><strong>Simons, D. & Chabris, C.</strong> (1999). Gorillas in Our Midst.</div>
-    <div class="ref-item"><strong>Theeuwes, J.</strong> (1992). Perceptual selectivity for color and form.</div>
-    <div class="ref-item"><strong>Pashler, H.</strong> (1994). Dual-task interference in simple tasks.</div>
-    <div class="ref-item"><strong>Owen, A.M. et al.</strong> (1991). Extra-dimensional versus intra-dimensional set shifting.</div>
-    <div class="ref-item"><strong>Bruner, J.S.</strong> (1956). A Study of Thinking.</div>
-    <div class="ref-item"><strong>Skinner, B.F.</strong> (1938). The Behavior of Organisms.</div>
-    <div class="ref-item"><strong>Saffran, J.R. et al.</strong> (1996). Statistical learning by 8-month-old infants.</div>
-    <div class="ref-item"><strong>Gick, M.L. & Holyoak, K.J.</strong> (1983). Schema induction and analogical transfer.</div>
-    <div class="ref-item"><strong>Ebbinghaus, H.</strong> (1885). Über das Gedächtnis.</div>
-    <div class="ref-item"><strong>Vygotsky, L.S.</strong> (1978). Mind in Society.</div>
-  </div>
-  <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px solid var(--border);">
-    <p style="font-size: 0.85rem; color: var(--text-dim);">
-      <strong style="color: var(--text-secondary);">Competition Citation:</strong> Martyna Plomecka, Yao Yan, Nicholas Kang, Ryan Burnell, María Cruz, and Sara Wolley.
-      <em>Measuring Progress Toward AGI - Cognitive Abilities.</em> Kaggle, 2026.
-    </p>
-  </div>
-</section>
-
-<footer class="footer">
-  <p>The Cognitive Assessment Benchmark · Ali Lawal Muazu · Independent Researcher · March 2026</p>
-  <p style="margin-top: 0.5rem;">Built for Google DeepMind's <a href="https://www.kaggle.com/competitions/kaggle-measuring-agi" target="_blank">Measuring Progress Toward AGI</a> hackathon</p>
-</footer>
-
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const sunIcon = toggle.querySelector('.icon-sun');
+        const moonIcon = toggle.querySelector('.icon-moon');
+        function applyTheme(t) {
+            html.setAttribute('data-theme', t);
+            if (t === 'dark') { sunIcon.style.display = 'inline'; moonIcon.style.display = 'none' }
+            else { sunIcon.style.display = 'none'; moonIcon.style.display = 'inline' }
+            localStorage.setItem('theme', t);
+        }
+        const saved = localStorage.getItem('theme');
+        if (saved) applyTheme(saved); else applyTheme('light');
+        toggle.addEventListener('click', () => {
+            applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+    </script>
 </body>
+
 </html>

@@ -1,4 +1,5 @@
 kaggle-benchmarks/
 __pycache__/
 *.pyc
+project_documentation.html
 .ipynb_checkpoints/
