@@ -50,17 +50,17 @@ All 30 modules use RCCO judge prompts with kbench.judge_llm, Pydantic schemas fo
 
 ### Results, Insights, and Conclusions
 
-Model: **Gemini 2.5 Flash** | Combined Runtime: ~24 minutes across 150 trials | **Overall Composite: 0.836**
+Model: **Gemini 2.5 Flash** | Combined Runtime: ~24 minutes across 150 trials | **Overall Composite: 0.852**
 
 | Benchmark | Composite | Module Scores |
 |-----------|-----------|---------------|
-| **Metacognition** | **0.570** | FOK: 0.68, IOED: **0.13**, DK: 0.68, Socratic: 0.92, Deference: **0.38** |
-| **Executive Functions** | **0.789** | Stroop: 0.90, WCST: 0.72, Tower: **0.60**, Go/No-Go: 0.98, N-Back: 0.64, Switch: 1.00 |
-| **Social Cognition** | **0.928** | Belief: 0.92, Perspective: 0.96, Norms: 0.86, Deception: 1.00, Empathy: 0.96, Dilemma: 0.86 |
-| **Attention** | **0.965** | Selective: 1.00, Sustained: 0.96, Change: 1.00, Distraction: 1.00, Divided: 1.00, Shift: 0.82 |
-| **Learning** | **0.930** | Rules: 1.00, Feedback: 0.80, Statistical: 0.88, Transfer: 1.00, Curves: 0.92, Curriculum: 1.00 |
+| **Attention** | **0.963** | Selective: 0.98, Sustained: 0.94, Change: 1.00, Distraction: 0.98, Divided: 1.00, Shift: 0.88 |
+| **Social Cognition** | **0.941** | Belief: 0.92, Perspective: 0.96, Norms: 0.86, Deception: 1.00, Empathy: 0.96, Dilemma: 0.86 |
+| **Learning** | **0.893** | Rules: 1.00, Feedback: 0.78, Statistical: 0.80, Transfer: 1.00, Curves: 0.78, Curriculum: 1.00 |
+| **Executive Functions** | **0.835** | Stroop: 0.90, WCST: 0.72, Tower: 0.60, Go/No-Go: 0.98, N-Back: 0.64, Switch: 1.00 |
+| **Metacognition** | **0.629** | FOK: 0.68, IOED: **0.13**, DK: 0.68, Socratic: 0.92, Deference: **0.38** |
 
-**The Cognitive Profile:** Attention (0.965) > Social Cognition (0.928) > Learning (0.930) > Executive Functions (0.789) > Metacognition (0.570). The model's strongest faculties are outward-facing; its weakest are self-directed.
+**The Cognitive Profile:** Attention (0.963) > Social Cognition (0.941) > Learning (0.893) > Executive Functions (0.835) > Metacognition (0.629). The model's strongest faculties are outward-facing; its weakest are self-directed.
 
 **Key Findings:**
 
@@ -68,13 +68,13 @@ Model: **Gemini 2.5 Flash** | Combined Runtime: ~24 minutes across 150 trials | 
 
 2. **The Illusion of Depth Collapse.** IOED scored 0.13 — the lowest module across all 30. Models maintain confidence even after attempting explanations that should reveal their shallow understanding. Pre/post confidence recalibration is nearly absent.
 
-3. **Monitoring vs Control Dissociation.** Models excel at Monitoring (distraction: 1.00, deception: 1.00, Go/No-Go: 0.98) but fail at Control (deference: 0.38, IOED: 0.13). They detect errors in others but cannot regulate their own behavior.
+3. **Monitoring vs Control Dissociation.** Models excel at Monitoring (distraction: 0.98, deception: 1.00, Go/No-Go: 0.98) but fail at Control (deference: 0.38, IOED: 0.13). They detect errors in others but cannot regulate their own behavior.
 
 4. **Transfer Learning Is a Superpower.** Perfect 1.00 across five domain pairs — exceeding typical human performance on Duncker's radiation problem (~30% solve without hints).
 
-5. **The Right-Answer-Wrong-Reason Problem.** Feedback learning (0.80) and N-Back (0.64) reveal inconsistent performance — pattern-matching without stable causal understanding.
+5. **The Right-Answer-Wrong-Reason Problem.** Feedback learning (0.78) and N-Back (0.64) reveal inconsistent performance — pattern-matching without stable causal understanding.
 
-6. **Perfect Prompt Injection Resistance.** Distraction resistance (1.00) — complete immunity to injected corrections, fake system alerts, redirect attempts.
+6. **Perfect Change Detection.** Change blindness (1.00) — the model catches dangerous negation flips in medical text, subtle percentage changes, and entity substitutions. LLMs don't suffer inattentional blindness.
 
 7. **Clinical Pattern Match.** The cognitive profile (strong attention/social perception, weak planning, absent metacognitive recalibration) mirrors specific human neurocognitive profiles.
 

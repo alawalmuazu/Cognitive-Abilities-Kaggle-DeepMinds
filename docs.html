@@ -274,15 +274,15 @@
         <section id="results">
             <span class="section-label"><svg class="ic"><use href="#i-chart" /></svg> Results</span>
             <h2>Cognitive Profile</h2>
-            <p class="desc">Gemini 2.5 Flash evaluated across all 5 cognitive faculties. Combined runtime: ~24 minutes across 150 trials. <strong>Overall Composite: 0.836</strong></p>
+            <p class="desc">Gemini 2.5 Flash evaluated across all 5 cognitive faculties. Combined runtime: ~24 minutes across 150 trials. <strong>Overall Composite: 0.852</strong></p>
 
             <div class="arch-box">
                 <div class="bar-group">
-                    <div class="bar-row"><span class="bar-label">Attention</span><div class="bar-track"><div class="bar-fill teal" style="width:96.5%">0.965</div></div></div>
-                    <div class="bar-row"><span class="bar-label">Learning</span><div class="bar-track"><div class="bar-fill blue" style="width:93.0%">0.930</div></div></div>
-                    <div class="bar-row"><span class="bar-label">Social Cognition</span><div class="bar-track"><div class="bar-fill green" style="width:92.8%">0.928</div></div></div>
-                    <div class="bar-row"><span class="bar-label">Executive Functions</span><div class="bar-track"><div class="bar-fill amber" style="width:78.9%">0.789</div></div></div>
-                    <div class="bar-row"><span class="bar-label">Metacognition</span><div class="bar-track"><div class="bar-fill red" style="width:57.0%">0.570</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Attention</span><div class="bar-track"><div class="bar-fill teal" style="width:96.3%">0.963</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Social Cognition</span><div class="bar-track"><div class="bar-fill blue" style="width:94.1%">0.941</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Learning</span><div class="bar-track"><div class="bar-fill green" style="width:89.3%">0.893</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Executive Functions</span><div class="bar-track"><div class="bar-fill amber" style="width:83.5%">0.835</div></div></div>
+                    <div class="bar-row"><span class="bar-label">Metacognition</span><div class="bar-track"><div class="bar-fill red" style="width:62.9%">0.629</div></div></div>
                 </div>
                 <div class="alert info" style="margin-top:18px"><svg><use href="#i-info" /></svg><span><strong>Key insight:</strong> The model's strongest faculties are <strong>outward-facing</strong> (attention, social perception); its weakest are <strong>self-directed</strong> (metacognition, executive control). IOED scored <strong>0.13</strong> — the deepest failure of metacognitive recalibration.</span></div>
             </div>
@@ -295,7 +295,7 @@
             <p class="desc">Each benchmark adapts 6 published paradigms from cognitive psychology for LLM evaluation.</p>
 
             <details class="accordion" open>
-                <summary><svg><use href="#i-brain" /></svg> Benchmark 1: The Dunning-Kruger Probe — Metacognition (0.570)</summary>
+                <summary><svg><use href="#i-brain" /></svg> Benchmark 1: The Dunning-Kruger Probe — Metacognition (0.629)</summary>
                 <div class="inner">
                     <p>Does the model know what it knows? Tests confidence calibration, explanatory depth, epistemic vigilance, resilience under social pressure, and deference to expertise.</p>
                     <table class="doc-table">
@@ -311,7 +311,7 @@
             </details>
 
             <details class="accordion">
-                <summary><svg><use href="#i-zap" /></svg> Benchmark 2: Cognitive Control — Executive Functions (0.789)</summary>
+                <summary><svg><use href="#i-zap" /></svg> Benchmark 2: Cognitive Control — Executive Functions (0.835)</summary>
                 <div class="inner">
                     <p>Can the model control its own cognition? Tests inhibitory control, cognitive flexibility, planning depth, response inhibition, working memory, and switch cost.</p>
                     <table class="doc-table">
@@ -328,7 +328,7 @@
             </details>
 
             <details class="accordion">
-                <summary><svg><use href="#i-sparkle" /></svg> Benchmark 3: SocialMind — Social Cognition (0.928)</summary>
+                <summary><svg><use href="#i-sparkle" /></svg> Benchmark 3: SocialMind — Social Cognition (0.941)</summary>
                 <div class="inner">
                     <p>Can the model understand other minds? Tests Theory of Mind, perspective-taking, social norms, deception detection, empathic accuracy, and game-theoretic reasoning.</p>
                     <table class="doc-table">
@@ -344,33 +344,33 @@
             </details>
 
             <details class="accordion">
-                <summary><svg><use href="#i-target" /></svg> Benchmark 4: FocusProbe — Attention (0.965)</summary>
+                <summary><svg><use href="#i-target" /></svg> Benchmark 4: FocusProbe — Attention (0.963)</summary>
                 <div class="inner">
                     <p>Can the model filter, sustain, and divide focus? Tests selective attention, vigilance, change detection, distraction resistance, dual-task performance, and set-shifting.</p>
                     <table class="doc-table">
                         <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
-                        <tr><td>Selective Attention</td><td>Channel filtering</td><td>Cherry, 1953</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Sustained Attention</td><td>Vigilance over long passages</td><td>Mackworth, 1948</td><td class="s-high">0.96</td></tr>
+                        <tr><td>Selective Attention</td><td>Channel filtering</td><td>Cherry, 1953</td><td class="s-high">0.98</td></tr>
+                        <tr><td>Sustained Attention</td><td>Vigilance over long passages</td><td>Mackworth, 1948</td><td class="s-high">0.94</td></tr>
                         <tr><td>Change Blindness</td><td>Subtle modification detection</td><td>Simons & Chabris, 1999</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Distraction Resistance</td><td>Prompt injection immunity</td><td>Theeuwes, 1992</td><td class="s-perfect">1.00</td></tr>
+                        <tr><td>Distraction Resistance</td><td>Prompt injection immunity</td><td>Theeuwes, 1992</td><td class="s-high">0.98</td></tr>
                         <tr><td>Divided Attention</td><td>Dual-task performance</td><td>Pashler, 1994</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Set-Shifting</td><td>Rule-change detection</td><td>Owen et al., 1991</td><td class="s-high">0.82</td></tr>
+                        <tr><td>Set-Shifting</td><td>Rule-change detection</td><td>Owen et al., 1991</td><td class="s-high">0.88</td></tr>
                     </table>
                     <div class="alert success"><svg><use href="#i-info" /></svg><span><strong>Perfect Immunity:</strong> Distraction Resistance scored 1.00 — complete immunity to injected false corrections, fake system alerts, and redirect attempts.</span></div>
                 </div>
             </details>
 
             <details class="accordion">
-                <summary><svg><use href="#i-book" /></svg> Benchmark 5: AdaptIQ — Learning (0.930)</summary>
+                <summary><svg><use href="#i-book" /></svg> Benchmark 5: AdaptIQ — Learning (0.893)</summary>
                 <div class="inner">
                     <p>Can the model learn new rules within a single context window? Tests rule induction, feedback-based learning, statistical regularities, analogical transfer, and curriculum sensitivity.</p>
                     <table class="doc-table">
                         <tr><th>Module</th><th>Paradigm</th><th>Citation</th><th>Score</th></tr>
                         <tr><td>Rule Induction</td><td>Few-shot rule discovery</td><td>Bruner, 1956</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Feedback Learning</td><td>Correct/incorrect adaptation</td><td>Skinner, 1938</td><td class="s-high">0.80</td></tr>
-                        <tr><td>Statistical Learning</td><td>Distributional regularities</td><td>Saffran et al., 1996</td><td class="s-high">0.88</td></tr>
+                        <tr><td>Feedback Learning</td><td>Correct/incorrect adaptation</td><td>Skinner, 1938</td><td class="s-mid">0.78</td></tr>
+                        <tr><td>Statistical Learning</td><td>Distributional regularities</td><td>Saffran et al., 1996</td><td class="s-high">0.80</td></tr>
                         <tr><td>Transfer Learning</td><td>Cross-domain analogy</td><td>Gick & Holyoak, 1983</td><td class="s-perfect">1.00</td></tr>
-                        <tr><td>Learning Curves</td><td>Predicting learning dynamics</td><td>Ebbinghaus, 1885</td><td class="s-high">0.92</td></tr>
+                        <tr><td>Learning Curves</td><td>Predicting learning dynamics</td><td>Ebbinghaus, 1885</td><td class="s-mid">0.78</td></tr>
                         <tr><td>Curriculum Sensitivity</td><td>Example ordering effects</td><td>Vygotsky, 1978</td><td class="s-perfect">1.00</td></tr>
                     </table>
                     <div class="alert info"><svg><use href="#i-info" /></svg><span><strong>Transfer Superpower:</strong> Perfect 1.00 across five domain pairs, exceeding typical human performance on Duncker's radiation problem (~30% solve without hints).</span></div>
@@ -414,11 +414,11 @@
             <div class="arch-box">
                 <table class="doc-table" style="margin-bottom:20px">
                     <tr><th>Benchmark</th><th>Individual</th><th>Unified</th><th>Δ</th><th>Interpretation</th></tr>
-                    <tr><td>Metacognition</td><td>0.768</td><td class="s-mid">0.570</td><td style="color:var(--danger);font-weight:700">−0.198</td><td>IOED collapsed from 0.62→0.13 under load</td></tr>
-                    <tr><td>Executive Functions</td><td>0.828</td><td class="s-mid">0.789</td><td style="color:var(--danger)">−0.039</td><td>Tower/N-Back slight degradation</td></tr>
-                    <tr><td>Social Cognition</td><td>0.948</td><td class="s-high">0.928</td><td style="color:var(--danger)">−0.020</td><td>Minor variance, consistently strong</td></tr>
-                    <tr><td>Attention</td><td>0.953</td><td class="s-high">0.965</td><td style="color:var(--success)">+0.012</td><td>Attention improves under load</td></tr>
-                    <tr><td>Learning</td><td>0.916</td><td class="s-high">0.930</td><td style="color:var(--success)">+0.014</td><td>Feedback learning improved</td></tr>
+                    <tr><td>Metacognition</td><td>0.768</td><td class="s-mid">0.629</td><td style="color:var(--danger);font-weight:700">−0.139</td><td>IOED collapsed from 0.62→0.13 under load</td></tr>
+                    <tr><td>Executive Functions</td><td>0.828</td><td class="s-high">0.835</td><td style="color:var(--success)">+0.007</td><td>Stable — consistent across runs</td></tr>
+                    <tr><td>Social Cognition</td><td>0.948</td><td class="s-high">0.941</td><td style="color:var(--danger)">−0.007</td><td>Minor variance, consistently strong</td></tr>
+                    <tr><td>Attention</td><td>0.953</td><td class="s-high">0.963</td><td style="color:var(--success)">+0.010</td><td>Attention improves under load</td></tr>
+                    <tr><td>Learning</td><td>0.916</td><td class="s-high">0.893</td><td style="color:var(--danger)">−0.023</td><td>Statistical/curves slight variance</td></tr>
                 </table>
 
                 <!-- CSS comparison chart -->
@@ -427,35 +427,35 @@
                         <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Metacognition</span>
                         <div style="flex:1;display:flex;flex-direction:column;gap:2px">
                             <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:76.8%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.768</span></div>
-                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:57.0%;background:var(--danger);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.570</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:62.9%;background:var(--danger);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.629</span></div>
                         </div>
                     </div>
                     <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
                         <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Executive Fns</span>
                         <div style="flex:1;display:flex;flex-direction:column;gap:2px">
                             <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:82.8%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.828</span></div>
-                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:78.9%;background:var(--warn);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.789</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:83.5%;background:var(--warn);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.835</span></div>
                         </div>
                     </div>
                     <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
                         <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Social Cognition</span>
                         <div style="flex:1;display:flex;flex-direction:column;gap:2px">
                             <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:94.8%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.948</span></div>
-                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:92.8%;background:var(--success);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.928</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:94.1%;background:var(--success);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.941</span></div>
                         </div>
                     </div>
                     <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
                         <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Attention</span>
                         <div style="flex:1;display:flex;flex-direction:column;gap:2px">
                             <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:95.3%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.953</span></div>
-                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:96.5%;background:var(--accent);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.965</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:96.3%;background:var(--accent);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.963</span></div>
                         </div>
                     </div>
                     <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
                         <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Learning</span>
                         <div style="flex:1;display:flex;flex-direction:column;gap:2px">
                             <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:91.6%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.916</span></div>
-                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:93.0%;background:var(--info);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.930</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:89.3%;background:var(--info);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.893</span></div>
                         </div>
                     </div>
                     <div style="display:flex;gap:16px;margin-top:6px;font-size:.68rem;color:var(--text3)">
@@ -464,7 +464,7 @@
                     </div>
                 </div>
 
-                <div class="alert warn" style="margin-top:18px"><svg><use href="#i-info" /></svg><span><strong>Cross-validation insight:</strong> Metacognition's 0.198 drop under unified execution suggests IOED (explanatory depth self-assessment) is the most fragile cognitive faculty — it degrades when the model processes extended multi-battery workloads. Attention and learning <em>improve</em>, suggesting these are robust faculties.</span></div>
+                <div class="alert warn" style="margin-top:18px"><svg><use href="#i-info" /></svg><span><strong>Cross-validation insight:</strong> Metacognition's 0.139 drop under unified execution suggests IOED (explanatory depth self-assessment) is the most fragile cognitive faculty — it degrades under extended workloads. Executive, Social, and Attention remain <em>stable</em> (Δ < 0.01), confirming reproducibility.</span></div>
             </div>
 
             <!-- Per-battery key insights -->
@@ -523,7 +523,7 @@
                 <div class="card">
                     <div class="card-icon"><svg><use href="#i-info" /></svg></div>
                     <h3>Right-Answer-Wrong-Reason</h3>
-                    <p>Feedback learning (0.80) and N-Back (0.64) reveal inconsistent performance — pattern-matching without stable causal understanding.</p>
+                    <p>Feedback learning (0.78) and N-Back (0.64) reveal inconsistent performance — pattern-matching without stable causal understanding.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><svg><use href="#i-layers" /></svg></div>
@@ -567,11 +567,11 @@
             <p class="desc">Each benchmark runs as an independent Kaggle notebook with full execution output.</p>
             <table class="doc-table">
                 <tr><th>Benchmark</th><th>Name</th><th>Composite</th><th>Link</th></tr>
-                <tr><td>1. Metacognition</td><td>The Dunning-Kruger Probe</td><td class="s-mid">0.570</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/metacognition-agi-do-models-know-what-they-don-t" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
-                <tr><td>2. Executive Functions</td><td>Cognitive Control</td><td class="s-mid">0.789</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/executive-functions-benchmark-cognitive-control" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
-                <tr><td>3. Social Cognition</td><td>SocialMind</td><td class="s-high">0.928</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/social-cognition-benchmark-socialmind" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
-                <tr><td>4. Attention</td><td>FocusProbe</td><td class="s-high">0.965</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/attention-benchmark-focusprobe" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
-                <tr><td>5. Learning</td><td>AdaptIQ</td><td class="s-high">0.930</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/learning-track-benchmark-adaptiq" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>1. Metacognition</td><td>The Dunning-Kruger Probe</td><td class="s-mid">0.629</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/metacognition-agi-do-models-know-what-they-don-t" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>2. Executive Functions</td><td>Cognitive Control</td><td class="s-high">0.835</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/executive-functions-benchmark-cognitive-control" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>3. Social Cognition</td><td>SocialMind</td><td class="s-high">0.941</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/social-cognition-benchmark-socialmind" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>4. Attention</td><td>FocusProbe</td><td class="s-high">0.963</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/attention-benchmark-focusprobe" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
+                <tr><td>5. Learning</td><td>AdaptIQ</td><td class="s-high">0.893</td><td><a href="https://www.kaggle.com/code/alilawalmuazu/learning-track-benchmark-adaptiq" target="_blank" style="color:var(--accent)">Open →</a></td></tr>
             </table>
         </section>
 
