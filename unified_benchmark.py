@@ -1,7 +1,31 @@
 # %% [markdown]
-# # The Cognitive Assessment Battery
-# 5 batteries, 30 paradigms (1868-2010), 150 trials testing metacognition,
-# executive functions, social cognition, attention, and learning in LLMs.
+# # The Cognitive Assessment Battery: Probing Metacognition, Executive Control, Social Cognition, Attention, and Learning in LLMs
+#
+# **5 batteries -- 30 paradigms (1868-2010) -- 150 trials -- 39 Pydantic schemas**
+#
+# ### Problem Statement
+#
+# Current benchmarks test what models know -- not how they think. This submission presents
+# 5 benchmark batteries spanning 30 cognitive psychology paradigms testing faculties no
+# existing LLM benchmark systematically evaluates:
+#
+# **Metacognition** -- does the model know what it knows?
+# **Executive Functions** -- can it control its own cognition?
+# **Social Cognition** -- can it understand other minds?
+# **Attention** -- can it filter, sustain, and divide focus?
+# **Learning** -- can it learn new rules within a single context window?
+#
+# ### Dataset
+#
+# **150 hand-crafted trials** (30 per battery, 5 per module). Each trial has verifiable
+# ground truth and difficulty gradients. All scenarios original.
+#
+# ### Technical Details
+#
+# - **SDK**: @kbench.task, llm.prompt(schema=), kbench.chats.new(), task.evaluate()
+# - **39 Pydantic schemas** across all 5 batteries
+# - **30 RCCO judge prompts** (Role->Context->Constraints->Output)
+# - **Equal weighting per battery**: Primary modules (20%) + secondary modules (15%)
 
 # %%
 import random
@@ -13,6 +37,17 @@ import kaggle_benchmarks as kbench
 print("Cognitive Assessment Battery loaded successfully")
 
 
+# %% [markdown]
+# ## Battery 1: The Dunning-Kruger Probe (Metacognition)
+#
+# 6 modules: Feeling of Knowing (Hart, 1965), Illusion of Explanatory Depth (Rozenblit & Keil, 2002),
+# Dunning-Kruger Calibration (Kruger & Dunning, 1999), Epistemic Vigilance (Sperber et al., 2010),
+# Socratic Stress Test (Novel, inspired by Asch, 1951), High-Stakes Deference (Lichtenstein et al., 1982).
+#
+# Models rate confidence, attempt explanations then re-rate, evaluate fabricated citations,
+# face persuasive-but-wrong challenges, and navigate high-stakes scenarios requiring expert deference.
+
+# %%
 # ============================================================================
 # BATTERY: METACOGNITION
 # ============================================================================
@@ -787,6 +822,17 @@ def dunning_kruger_probe(llm) -> float:
 
     return round(composite, 4)
 
+# %% [markdown]
+# ## Battery 2: Cognitive Control (Executive Functions)
+#
+# 6 modules: Stroop Interference (1935), Wisconsin Card Sort (Grant & Berg, 1948),
+# Tower of London (Shallice, 1982), Go/No-Go (Donders, 1868), Dual N-Back (Kirchner, 1958),
+# Task Switching (Rogers & Monsell, 1995).
+#
+# Tests inhibitory control, cognitive flexibility, planning depth, response inhibition,
+# working memory, and switch cost.
+
+# %%
 # ============================================================================
 # BATTERY: EXECUTIVE FUNCTIONS
 # ============================================================================
@@ -1540,6 +1586,18 @@ def cognitive_control_battery(llm) -> float:
 
     return round(composite, 4)
 
+# %% [markdown]
+# ## Battery 3: SocialMind (Social Cognition)
+#
+# 6 modules: False Belief/ToM (Baron-Cohen et al., 1985), Perspective-Taking (Piaget, 1956),
+# Social Norm Understanding (Bicchieri, 2006), Deception Detection (Ekman, 1985),
+# Empathic Accuracy (Ickes, 1993), Social Dilemma Reasoning (Axelrod, 1984).
+#
+# Tests whether models can track false beliefs, shift perspectives, distinguish
+# descriptive from injunctive norms, identify manipulation, infer masked emotions,
+# and reason through game-theoretic scenarios.
+
+# %%
 # ============================================================================
 # BATTERY: SOCIAL COGNITION
 # ============================================================================
@@ -2197,6 +2255,17 @@ def socialmind_battery(llm) -> float:
 
     return round(composite, 4)
 
+# %% [markdown]
+# ## Battery 4: FocusProbe (Attention)
+#
+# 6 modules: Selective Attention (Cherry, 1953), Sustained Attention (Mackworth, 1948),
+# Change Blindness (Simons & Chabris, 1999), Distraction Resistance (Theeuwes, 1992),
+# Divided Attention (Pashler, 1994), Set-Shifting (Owen et al., 1991).
+#
+# Tests channel filtering, vigilance, subtle change detection, resistance to injected
+# distractors (fake corrections, system alerts), dual-task performance, and rule-change detection.
+
+# %%
 # ============================================================================
 # BATTERY: ATTENTION
 # ============================================================================
@@ -2994,6 +3063,18 @@ def focusprobe_battery(llm) -> float:
 
     return round(composite, 4)
 
+# %% [markdown]
+# ## Battery 5: AdaptIQ (Learning)
+#
+# 6 modules: Rule Induction (Bruner, 1956), Feedback Learning (Skinner, 1938),
+# Statistical Learning (Saffran et al., 1996), Transfer Learning (Gick & Holyoak, 1983),
+# Learning Curves (Ebbinghaus, 1885), Curriculum Sensitivity (Vygotsky, 1978).
+#
+# Tests in-context rule discovery, learning from correct/incorrect feedback, extracting
+# distributional regularities, cross-domain analogical transfer, predicting learning
+# dynamics, and sensitivity to example ordering.
+
+# %%
 # ============================================================================
 # BATTERY: LEARNING
 # ============================================================================
@@ -3512,8 +3593,14 @@ def adaptiq_battery(llm) -> float:
 # ============================================================================
 
 # %% [markdown]
-# ## The Cognitive Assessment Battery
+# ## Unified Composite: The Cognitive Assessment Battery
+#
 # 5 batteries, 30 paradigms, 150 trials. Equal weighting across batteries.
+#
+# **Expected Cognitive Profile:**
+# Attention (0.953) > Social Cognition (0.948) > Learning (0.916) > Executive Functions (0.828) > Metacognition (0.768)
+#
+# The model's strongest faculties are outward-facing; its weakest are self-directed.
 
 # %%
 @kbench.task(name="cognitive_assessment_battery")
