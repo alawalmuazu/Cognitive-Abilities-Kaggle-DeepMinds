@@ -3603,11 +3603,11 @@ def adaptiq_battery(llm) -> float:
 # The model's strongest faculties are outward-facing; its weakest are self-directed.
 
 # %%
-@kbench.task(name="cognitive_assessment_battery")
+@kbench.task(name="the_cognitive_assessment_battery")
 def cognitive_assessment_battery(llm) -> float:
-    """5 batteries (30 paradigms, 150 trials) testing metacognition, executive
-    functions, social cognition, attention, and learning. Equal weighting.
-    The most comprehensive cognitive assessment of LLMs."""
+    """The Cognitive Assessment Battery: Probing Metacognition, Executive Control,
+    Social Cognition, Attention, and Learning in LLMs.
+    5 batteries (30 paradigms, 150 trials). Equal weighting."""
 
     meta = dunning_kruger_probe.evaluate(llm=[llm]).as_dataframe()["result"].mean()
     exec_fn = cognitive_control_battery.evaluate(llm=[llm]).as_dataframe()["result"].mean()
