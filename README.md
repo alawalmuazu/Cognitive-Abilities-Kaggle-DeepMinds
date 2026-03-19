@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 The Cognitive Assessment Battery
+# 🧠 The Cognitive Assessment Benchmark
 
 ### Probing Metacognition, Executive Control, Social Cognition, Attention, and Learning in LLMs
 
