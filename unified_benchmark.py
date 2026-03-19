@@ -1,5 +1,5 @@
 # %% [markdown]
-# # The Cognitive Assessment Battery: Probing Metacognition, Executive Control, Social Cognition, Attention, and Learning in LLMs
+# # The Cognitive Assessment Benchmark: Probing Metacognition, Executive Control, Social Cognition, Attention, and Learning in LLMs
 #
 # **5 batteries -- 30 paradigms (1868-2010) -- 150 trials -- 39 Pydantic schemas**
 #
@@ -34,7 +34,7 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 import kaggle_benchmarks as kbench
 
-print("Cognitive Assessment Battery loaded successfully")
+print("Cognitive Assessment Benchmark loaded successfully")
 
 
 # %% [markdown]
@@ -3589,11 +3589,11 @@ def adaptiq_battery(llm) -> float:
 
 
 # ============================================================================
-# UNIFIED COMPOSITE -- The Cognitive Assessment Battery
+# UNIFIED COMPOSITE -- The Cognitive Assessment Benchmark
 # ============================================================================
 
 # %% [markdown]
-# ## Unified Composite: The Cognitive Assessment Battery
+# ## Unified Composite: The Cognitive Assessment Benchmark
 #
 # 5 batteries, 30 paradigms, 150 trials. Equal weighting across batteries.
 #
@@ -3603,9 +3603,9 @@ def adaptiq_battery(llm) -> float:
 # The model's strongest faculties are outward-facing; its weakest are self-directed.
 
 # %%
-@kbench.task(name="the_cognitive_assessment_battery")
-def cognitive_assessment_battery(llm) -> float:
-    """The Cognitive Assessment Battery: Probing Metacognition, Executive Control,
+@kbench.task(name="the_cognitive_assessment_benchmark")
+def cognitive_assessment_benchmark(llm) -> float:
+    """The Cognitive Assessment Benchmark: Probing Metacognition, Executive Control,
     Social Cognition, Attention, and Learning in LLMs.
     5 batteries (30 paradigms, 150 trials). Equal weighting."""
 
@@ -3618,7 +3618,7 @@ def cognitive_assessment_battery(llm) -> float:
     composite = (meta + exec_fn + social + attn + learn) / 5.0
 
     print("=" * 60)
-    print("  The Cognitive Assessment Battery -- Results")
+    print("  The Cognitive Assessment Benchmark -- Results")
     print("=" * 60)
     print(f"  1. Metacognition     : {meta:.3f}")
     print(f"  2. Executive Fns     : {exec_fn:.3f}")
@@ -3633,4 +3633,4 @@ def cognitive_assessment_battery(llm) -> float:
 
 # %%
 # Trigger execution
-cognitive_assessment_battery.evaluate(llm=[kbench.llm]).as_dataframe()
+cognitive_assessment_benchmark.evaluate(llm=[kbench.llm]).as_dataframe()

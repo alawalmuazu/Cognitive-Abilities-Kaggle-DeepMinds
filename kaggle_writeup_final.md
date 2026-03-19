@@ -1,4 +1,4 @@
-# The Cognitive Assessment Battery: Probing Metacognition, Executive Control, Social Cognition, Attention, and Learning in LLMs
+# The Cognitive Assessment Benchmark: Probing Metacognition, Executive Control, Social Cognition, Attention, and Learning in LLMs
 
 ### Team
 Solo submission
