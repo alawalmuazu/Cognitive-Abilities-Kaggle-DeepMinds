@@ -236,6 +236,7 @@
             <nav>
                 <a href="#results">Results</a>
                 <a href="#benchmarks" class="hide-sm">Benchmarks</a>
+                <a href="#comparison" class="hide-sm">Compare</a>
                 <a href="#findings" class="hide-sm">Findings</a>
                 <a href="#links">Links</a>
                 <a href="#references" class="hide-sm">Refs</a>
@@ -400,6 +401,99 @@
                     <span class="arch-node">task.evaluate()<small>Batch execution</small></span>
                     <span class="arch-arrow"><svg class="ic"><use href="#i-arrow" /></svg></span>
                     <span class="arch-node primary">Composite Score<small>Weighted average</small></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- INDIVIDUAL vs UNIFIED COMPARISON -->
+        <section id="comparison">
+            <span class="section-label"><svg class="ic"><use href="#i-chart" /></svg> Cross-Validation</span>
+            <h2>Individual vs Unified Results</h2>
+            <p class="desc">Each benchmark was first run as a <strong>standalone notebook</strong>, then all 5 were combined into a single <strong>unified run</strong> (150 trials). The score differences reveal how context-sharing and sequential execution affects cognitive performance.</p>
+
+            <div class="arch-box">
+                <table class="doc-table" style="margin-bottom:20px">
+                    <tr><th>Benchmark</th><th>Individual</th><th>Unified</th><th>Δ</th><th>Interpretation</th></tr>
+                    <tr><td>Metacognition</td><td>0.768</td><td class="s-mid">0.570</td><td style="color:var(--danger);font-weight:700">−0.198</td><td>IOED collapsed from 0.62→0.13 under load</td></tr>
+                    <tr><td>Executive Functions</td><td>0.828</td><td class="s-mid">0.789</td><td style="color:var(--danger)">−0.039</td><td>Tower/N-Back slight degradation</td></tr>
+                    <tr><td>Social Cognition</td><td>0.948</td><td class="s-high">0.928</td><td style="color:var(--danger)">−0.020</td><td>Minor variance, consistently strong</td></tr>
+                    <tr><td>Attention</td><td>0.953</td><td class="s-high">0.965</td><td style="color:var(--success)">+0.012</td><td>Attention improves under load</td></tr>
+                    <tr><td>Learning</td><td>0.916</td><td class="s-high">0.930</td><td style="color:var(--success)">+0.014</td><td>Feedback learning improved</td></tr>
+                </table>
+
+                <!-- CSS comparison chart -->
+                <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
+                        <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Metacognition</span>
+                        <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:76.8%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.768</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:57.0%;background:var(--danger);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.570</span></div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
+                        <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Executive Fns</span>
+                        <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:82.8%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.828</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:78.9%;background:var(--warn);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.789</span></div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
+                        <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Social Cognition</span>
+                        <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:94.8%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.948</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:92.8%;background:var(--success);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.928</span></div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
+                        <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Attention</span>
+                        <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:95.3%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.953</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:96.5%;background:var(--accent);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.965</span></div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.75rem">
+                        <span style="width:140px;text-align:right;font-weight:500;flex-shrink:0">Learning</span>
+                        <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:91.6%;background:var(--text3);border-radius:3px;opacity:.5"></div><span style="color:var(--text3);font-size:.68rem">0.916</span></div>
+                            <div style="display:flex;align-items:center;gap:6px"><div style="height:14px;width:93.0%;background:var(--info);border-radius:3px"></div><span style="font-weight:600;font-size:.68rem">0.930</span></div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:16px;margin-top:6px;font-size:.68rem;color:var(--text3)">
+                        <span style="display:flex;align-items:center;gap:4px"><span style="width:18px;height:8px;background:var(--text3);opacity:.5;border-radius:2px;display:inline-block"></span> Individual run</span>
+                        <span style="display:flex;align-items:center;gap:4px"><span style="width:18px;height:8px;background:var(--accent);border-radius:2px;display:inline-block"></span> Unified run (150 trials)</span>
+                    </div>
+                </div>
+
+                <div class="alert warn" style="margin-top:18px"><svg><use href="#i-info" /></svg><span><strong>Cross-validation insight:</strong> Metacognition's 0.198 drop under unified execution suggests IOED (explanatory depth self-assessment) is the most fragile cognitive faculty — it degrades when the model processes extended multi-battery workloads. Attention and learning <em>improve</em>, suggesting these are robust faculties.</span></div>
+            </div>
+
+            <!-- Per-battery key insights -->
+            <h3 style="margin-top:32px;font-size:.95rem;color:var(--text)">Per-Benchmark Key Insights</h3>
+            <div class="card-grid" style="margin-top:12px">
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-brain" /></svg></div>
+                    <h3>Metacognition</h3>
+                    <p>RLHF Paradox confirmed: 0.92 resilience vs 0.38 deference. Monitoring (0.92) strong, Control (0.38) absent. <strong>FOK</strong> dropped from 1.00→0.68, <strong>IOED</strong> collapsed 0.62→0.13 under load.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-zap" /></svg></div>
+                    <h3>Executive Functions</h3>
+                    <p><strong>WCST</strong> reveals COLOR saliency bias — model defaults to color when multiple sorting rules are valid. <strong>Tower</strong> shows bimodal failure: under-planning easy problems, over-generalizing hard ones to Tower of Hanoi.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-sparkle" /></svg></div>
+                    <h3>Social Cognition</h3>
+                    <p><strong>Deception detection</strong> hit 1.00 — identifies phishing, manipulation, AND correctly classifies genuine messages. Norm understanding shows legalistic over-estimation of violation severity.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-target" /></svg></div>
+                    <h3>Attention</h3>
+                    <p><strong>4 modules at ceiling</strong> (1.00). LLMs don't suffer inattentional blindness or psychological refractory period. Change detection exceeds human baselines — catches dangerous medical negation flips.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg><use href="#i-book" /></svg></div>
+                    <h3>Learning</h3>
+                    <p><strong>Transfer learning</strong> 1.00 across 5 domain pairs (military→medical, biology→business). Curriculum sensitivity confirms LLMs benefit from structured easy→hard ordering, mirroring Vygotsky's ZPD.</p>
                 </div>
             </div>
         </section>
